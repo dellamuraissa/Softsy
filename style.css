@@ -192,14 +192,14 @@ a  { text-decoration: none; color: inherit; }
 /* Quando usar imagem no lugar do texto:
    altura controlada via CSS — ajuste o valor conforme necessário */
 .logo__img {
-  height: 200px;        /* Altura máxima da logo no header */
+  height: 95px;        /* Altura máxima da logo no header */
   width: auto;         /* Mantém proporção original da imagem */
   object-fit: contain;
   display: block;
 }
 
 .logo__imgf {
-  height: 100px;        /* Altura máxima da logo no header */
+  height: 65px;        /* Altura máxima da logo no header */
   width: auto;         /* Mantém proporção original da imagem */
   object-fit: contain;
   display: block;
@@ -360,6 +360,92 @@ a  { text-decoration: none; color: inherit; }
 
 .tech-card__label { display: block; margin-top: 16px; font-size: .8rem; font-weight: 600; color: var(--yellow); letter-spacing: .05em; }
 
+/* ==========================================================
+   TECH ORBIT — Animação hero visual (lado direito)
+   ========================================================== */
+.tech-orbit {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.tech-orbit__svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 32px rgba(254,196,34,.08));
+}
+
+/* Anéis rotativos */
+.orbit-ring {
+  transform-origin: 210px 210px;
+}
+.orbit-ring--1 {
+  animation: orbitRotate 18s linear infinite;
+}
+.orbit-ring--2 {
+  animation: orbitRotate 12s linear infinite reverse;
+}
+
+@keyframes orbitRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Arco dourado animado */
+.orbit-arc {
+  transform-origin: 210px 210px;
+  animation: orbitRotate 8s linear infinite;
+}
+
+/* Nós orbitais: pulso suave */
+.orbit-node--1 { animation: nodePulse 3s ease-in-out infinite; }
+.orbit-node--2 { animation: nodePulse 3s ease-in-out infinite 0.75s; }
+.orbit-node--3 { animation: nodePulse 3s ease-in-out infinite 1.5s; }
+.orbit-node--4 { animation: nodePulse 3s ease-in-out infinite 2.25s; }
+
+@keyframes nodePulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+/* Satélites menores */
+.orbit-sat--1 {
+  transform-origin: 210px 210px;
+  animation: orbitRotate 6s linear infinite;
+}
+.orbit-sat--2 {
+  transform-origin: 210px 210px;
+  animation: orbitRotate 6s linear infinite reverse;
+}
+
+/* Texto central pulsante */
+.tech-orbit__code {
+  animation: codePulse 4s ease-in-out infinite;
+}
+@keyframes codePulse {
+  0%, 100% { opacity: 0.85; }
+  50%       { opacity: 0.4; }
+}
+
+/* Glow central */
+.tech-orbit__pulse {
+  position: absolute;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(254,196,34,.12) 0%, transparent 70%);
+  animation: pulseGrow 3s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes pulseGrow {
+  0%, 100% { transform: scale(1);   opacity: 0.6; }
+  50%       { transform: scale(1.8); opacity: 0; }
+}
+
 /* Seta de scroll animada na base do hero */
 .hero__scroll {
   position: absolute; bottom: 32px; left: 50%;
@@ -480,25 +566,12 @@ a  { text-decoration: none; color: inherit; }
 /* Ícone muda para fundo amarelo no hover do card */
 .card:hover .card__icon { background: var(--yellow); color: var(--blue); }
 
-/* Ícone decorativo do card */
-.card__icon {
-  width: 56px; height: 56px;
-  background: rgba(3,30,59,.06);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--blue);
-  margin-bottom: 20px;
-  transition: var(--transition);
-}
-.card:hover .card__icon { background: var(--yellow); color: var(--blue); }
 
 .card__title { font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; line-height: 1.4; }
 
-/* ✅ AJUSTE 4 — Símbolos < e /> em amarelo #FEC422 ao redor do título
-   Aplicado via span.card__tag-sym diretamente no HTML */
 .card__tag-sym {
-  color: var(--yellow);                  /* Amarelo principal #FEC422 */
-  font-family: 'Courier New', monospace; /* Estilo código para aparência de tag HTML */
+  color: var(--yellow);                  
+  font-family: 'Courier New', monospace; 
   font-weight: 700;
   font-size: .88em;
   letter-spacing: -.01em;
@@ -555,11 +628,9 @@ a  { text-decoration: none; color: inherit; }
    ========================================================== */
 .diferenciais { background: var(--gray-50); }
 
-/* ✅ AJUSTE 2 — Grid 3×2: substitui o flex wrap por grid fixo de 3 colunas
-   6 itens = 2 linhas exatas, layout simétrico e corporativo no desktop */
 .diferenciais-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 por linha no desktop */
+  grid-template-columns: repeat(3, 1fr); 
   gap: 16px;
   margin-top: 12px;
   max-width: 960px;
@@ -751,6 +822,7 @@ a  { text-decoration: none; color: inherit; }
   .hero__subtitle   { margin: 0 auto 36px; }
   .hero__actions    { justify-content: center; }
   .hero__visual     { display: none; }
+  .tech-orbit { width: 280px; height: 280px; }
   .quem-somos__grid { grid-template-columns: 1fr; text-align: center; }
   .quem-somos__text { max-width: 100%; }
   .cards-grid       { grid-template-columns: 1fr; }

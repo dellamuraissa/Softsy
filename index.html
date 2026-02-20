@@ -109,7 +109,6 @@
             <!-- Botão primário: leva à seção de soluções -->
             <a href="#solucoes" class="btn btn--yellow">Conheça nossas soluções</a>
 
-            <!-- ✅ AJUSTE 3 — Substitua SEUNUMEROAQUI pelo número real (somente dígitos) -->
             <a href="https://wa.me/55SEUNUMEROAQUI" target="_blank" rel="noopener" class="btn btn--outline">
               <!-- Ícone SVG do WhatsApp embutido -->
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -121,40 +120,85 @@
           </div>
         </div>
 
-        <!-- Card visual tecnológico — decorativo, aparece com delay -->
-        <div class="hero__visual fade-in fade-in--delay">
-          <div class="tech-card">
+        <!-- Animação tecnológica lado direito do hero -->
+        <div class="hero__visual fade-in fade-in--delay" aria-hidden="true">
+          <div class="tech-orbit">
 
-            <!-- Indicador verde (estilo "online/ativo") -->
-            <div class="tech-card__dot tech-card__dot--green"></div>
+            <!-- SVG principal: circuito/globo tecnológico outline -->
+            <svg class="tech-orbit__svg" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
 
-            <!-- Linhas decorativas simulando conteúdo de texto -->
-            <div class="tech-card__line"></div>
-            <div class="tech-card__line tech-card__line--short"></div>
+              <!-- Círculo externo principal -->
+              <circle cx="210" cy="210" r="190" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
 
-            <!-- Grade de nós tecnológicos (alguns destacados em amarelo) -->
-            <div class="tech-card__grid">
-              <div class="tech-node"></div>
-              <div class="tech-node tech-node--active"></div>
-              <div class="tech-node"></div>
-              <div class="tech-node tech-node--active"></div>
-              <div class="tech-node"></div>
-              <div class="tech-node tech-node--active"></div>
-            </div>
+              <!-- Anel rotativo 1 (tracejado) -->
+              <circle cx="210" cy="210" r="160" stroke="rgba(254,196,34,0.18)" stroke-width="1" stroke-dasharray="12 8" class="orbit-ring orbit-ring--1"/>
 
-            <!-- Barras de progresso animadas -->
-            <div class="tech-card__bar">
-              <div class="tech-bar" style="width:80%"></div>
-            </div>
-            <div class="tech-card__bar">
-              <div class="tech-bar tech-bar--yellow" style="width:55%"></div>
-            </div>
-            <div class="tech-card__bar">
-              <div class="tech-bar" style="width:92%"></div>
-            </div>
+              <!-- Anel rotativo 2 (tracejado fino, inverso) -->
+              <circle cx="210" cy="210" r="125" stroke="rgba(255,255,255,0.10)" stroke-width="1" stroke-dasharray="5 14" class="orbit-ring orbit-ring--2"/>
 
-            <!-- Rótulo de métrica fictícia decorativa -->
-            <span class="tech-card__label">Performance +94%</span>
+              <!-- Anel interno -->
+              <circle cx="210" cy="210" r="90" stroke="rgba(254,196,34,0.12)" stroke-width="1"/>
+
+              <!-- Núcleo central -->
+              <circle cx="210" cy="210" r="44" stroke="rgba(254,196,34,0.5)" stroke-width="1.5"/>
+              <circle cx="210" cy="210" r="30" stroke="rgba(254,196,34,0.25)" stroke-width="1"/>
+
+              <!-- Ícone central: código / brackets -->
+              <text x="210" y="218" text-anchor="middle" font-family="monospace" font-size="22" fill="rgba(254,196,34,0.85)" class="tech-orbit__code">&lt;/&gt;</text>
+
+              <!-- Linhas de conexão (eixos cruzados) -->
+              <line x1="210" y1="20" x2="210" y2="400" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+              <line x1="20" y1="210" x2="400" y2="210" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+              <!-- Nó orbital 1 (topo) - ponto amarelo + label -->
+              <g class="orbit-node orbit-node--1">
+                <circle cx="210" cy="50" r="7" fill="rgba(254,196,34,0.9)" stroke="rgba(254,196,34,0.3)" stroke-width="8"/>
+                <rect x="222" y="40" width="70" height="22" rx="4" fill="rgba(254,196,34,0.08)" stroke="rgba(254,196,34,0.25)" stroke-width="1"/>
+                <text x="257" y="55" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(254,196,34,0.8)">API REST</text>
+              </g>
+
+              <!-- Nó orbital 2 (direita) -->
+              <g class="orbit-node orbit-node--2">
+                <circle cx="370" cy="210" r="7" fill="rgba(255,255,255,0.7)" stroke="rgba(255,255,255,0.15)" stroke-width="8"/>
+                <rect x="314" y="220" width="70" height="22" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                <text x="349" y="235" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.6)">DATABASE</text>
+              </g>
+
+              <!-- Nó orbital 3 (baixo) -->
+              <g class="orbit-node orbit-node--3">
+                <circle cx="210" cy="370" r="7" fill="rgba(254,196,34,0.9)" stroke="rgba(254,196,34,0.3)" stroke-width="8"/>
+                <rect x="222" y="360" width="68" height="22" rx="4" fill="rgba(254,196,34,0.08)" stroke="rgba(254,196,34,0.25)" stroke-width="1"/>
+                <text x="256" y="375" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(254,196,34,0.8)">DEPLOY</text>
+              </g>
+
+              <!-- Nó orbital 4 (esquerda) -->
+              <g class="orbit-node orbit-node--4">
+                <circle cx="50" cy="210" r="7" fill="rgba(255,255,255,0.7)" stroke="rgba(255,255,255,0.15)" stroke-width="8"/>
+                <rect x="60" y="200" width="56" height="22" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                <text x="88" y="215" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.6)">CLOUD</text>
+              </g>
+
+              <!-- Satélites no anel 2 -->
+              <circle cx="316" cy="108" r="5" fill="rgba(254,196,34,0.6)" class="orbit-sat orbit-sat--1"/>
+              <circle cx="104" cy="316" r="5" fill="rgba(255,255,255,0.4)" class="orbit-sat orbit-sat--2"/>
+
+              <!-- Linhas conectoras dos nós ao centro (pontilhadas) -->
+              <line x1="210" y1="57" x2="210" y2="166" stroke="rgba(254,196,34,0.15)" stroke-width="1" stroke-dasharray="4 6"/>
+              <line x1="363" y1="210" x2="300" y2="210" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4 6"/>
+              <line x1="210" y1="363" x2="210" y2="254" stroke="rgba(254,196,34,0.15)" stroke-width="1" stroke-dasharray="4 6"/>
+              <line x1="57" y1="210" x2="120" y2="210" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4 6"/>
+
+              <!-- Arco de progresso decorativo -->
+              <circle cx="210" cy="210" r="190" stroke="rgba(254,196,34,0.35)" stroke-width="2"
+                stroke-dasharray="298 897" stroke-dashoffset="224"
+                stroke-linecap="round"
+                class="orbit-arc"/>
+
+            </svg>
+
+            <!-- Pulse glow centralizado -->
+            <div class="tech-orbit__pulse"></div>
+
           </div>
         </div>
 
@@ -234,64 +278,44 @@
           <span class="section__tag">Quem Ajudamos</span>
           <h2 class="section__title">Soluções para quem mais precisa de tecnologia</h2>
         </div>
-
-        <!-- Grid com os 3 cards de público-alvo -->
-        <!-- ✅ AJUSTE 4 — Títulos no formato <Texto /> com símbolos em amarelo via .card__tag-sym -->
         <div class="cards-grid">
 
           <!-- Card 1: Educação -->
           <div class="card reveal">
-           <!-- <div class="card__icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-              </svg>
-           </div> <!-- modificar talvez!!!!! -->
+            <center>
             <h3 class="card__title">
-              <span class="card__tag-sym">&lt;</span>Educação<span class="card__tag-sym"> /&gt;</span>
+              <span class="card__tag-sym">&lt;</span> Educação<span class="card__tag-sym"> /&gt;</span>
             </h3>
             <p class="card__text">
               Sistemas de gestão educacional completos: matrículas, frequência,
               notas, comunicação entre escola e família, e muito mais.
             </p>
           </div>
-
+          </center>
           <!-- Card 2: Empresas Privadas -->
           <div class="card reveal reveal--delay-1">
-            <div class="card__icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="2" y="7" width="20" height="14" rx="2"/>
-                <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
-                <line x1="12" y1="12" x2="12" y2="16"/>
-                <line x1="10" y1="14" x2="14" y2="14"/>
-              </svg>
-            </div>
+            <center>
             <h3 class="card__title">
-              <span class="card__tag-sym">&lt;</span>Empresas Privadas<span class="card__tag-sym"> /&gt;</span>
+              <span class="card__tag-sym">&lt;</span> Empresas Privadas<span class="card__tag-sym"> /&gt;</span>
             </h3>
             <p class="card__text">
               Soluções para otimização e automação de processos internos,
               reduzindo custos e aumentando a eficiência operacional.
             </p>
           </div>
-
+          </center>
           <!-- Card 3: Órgãos Públicos -->
           <div class="card reveal reveal--delay-2">
-            <div class="card__icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
-              </svg>
-            </div>
+            <center>
             <h3 class="card__title">
-              <span class="card__tag-sym">&lt;</span>Órgãos Públicos<span class="card__tag-sym"> /&gt;</span>
+              <span class="card__tag-sym">&lt;</span> Órgãos Públicos<span class="card__tag-sym"> /&gt;</span>
             </h3>
             <p class="card__text">
               Sistemas administrativos modernos para digitalização de processos,
               transparência e eficiência na gestão pública.
             </p>
           </div>
-
+        </center>
         </div>
       </div>
     </section>
@@ -408,10 +432,6 @@
       </div>
     </section>
 
-    <!-- =====================================================
-         DIFERENCIAIS — pontos fortes da empresa
-         ✅ AJUSTE 2 — 6 diferenciais em grid 3×2 simétrico
-         ===================================================== -->
     <section class="section diferenciais" id="diferenciais">
       <div class="container">
 
@@ -526,7 +546,7 @@
       <!-- ✅ AJUSTE 5 — Logo flexível no footer (mesma estrutura do header) -->
       <a href="#inicio" class="nav__logo">
         <div class="logo">
-          <img src="img/logo.png" alt="Softsy" class="logo__img" /> 
+          <img src="img/logo.png" alt="Softsy" class="logo__imgf" /> 
         </div>
       </a>
       <p class="footer__copy">© 2026 Softsy. Todos os direitos reservados.</p>
