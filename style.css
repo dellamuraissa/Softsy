@@ -1,45 +1,68 @@
+/* =========================================================
+   SOFTSY — style.css
+   Paleta: #031E3B (azul) | #FEC422 (amarelo) | #FFFFFF
+   ========================================================= */
 
 
-
+/* ==========================================================
+   RESET & BASE
+   Zera margens, paddings e define box-sizing universal
+   ========================================================== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ==========================================================
+   VARIÁVEIS CSS (Custom Properties)
+   Centralizadas aqui para fácil manutenção e consistência
+   ========================================================== */
 :root {
-  --blue:       #031E3B;
-  --blue-mid:   #052A54;
-  --blue-light: #0A3D78;
-  --yellow:     #FEC422;
-  --yellow-2:   #FFD65A;
+  /* Paleta de cores */
+  --blue:       #031E3B;   /* Azul principal da marca */
+  --blue-mid:   #052A54;   /* Azul médio para gradientes */
+  --blue-light: #0A3D78;   /* Azul mais claro para variações */
+  --yellow:     #FEC422;   /* Amarelo principal */
+  --yellow-2:   #FFD65A;   /* Amarelo hover/destaque suave */
   --white:      #FFFFFF;
+
+  /* Escala de cinzas para fundos e bordas */
   --gray-50:    #F8FAFC;
   --gray-100:   #EEF2F7;
   --gray-300:   #C8D4E3;
   --gray-600:   #5A718A;
-  --text-dark:  #0D1F35;
-  --text-body:  #3C526B;
-  --radius:     8px;
+
+  /* Cores de texto */
+  --text-dark:  #0D1F35;   /* Títulos e textos principais */
+  --text-body:  #3C526B;   /* Corpo de texto */
+
+  /* Utilitários de design */
+  --radius:     8px;       /* Border-radius padrão dos botões */
   --shadow-sm:  0 2px 8px rgba(3,30,59,.08);
   --shadow-md:  0 8px 32px rgba(3,30,59,.12);
   --shadow-lg:  0 20px 60px rgba(3,30,59,.18);
-  --transition: .25s ease;
+  --transition: .25s ease; /* Duração padrão das transições */
   --font:       'Poppins', sans-serif;
-  --nav-height: 72px;
+  --nav-height: 72px;      /* Altura do header fixo */
 }
 
+/* Scroll suave nativo ao clicar em âncoras */
 html { scroll-behavior: smooth; }
 
+/* Estilos base do corpo da página */
 body {
   font-family: var(--font);
   font-size: 16px;
   color: var(--text-body);
   background: var(--white);
   line-height: 1.7;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Evita scroll horizontal indesejado */
 }
 
 img { max-width: 100%; display: block; }
 a  { text-decoration: none; color: inherit; }
 
-
+/* ==========================================================
+   CONTAINER
+   Largura máxima centralizada com padding lateral
+   ========================================================== */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -47,6 +70,10 @@ a  { text-decoration: none; color: inherit; }
   padding: 0 24px;
 }
 
+/* ==========================================================
+   BOTÕES
+   Dois estilos: amarelo (primário) e outline (secundário)
+   ========================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -62,6 +89,7 @@ a  { text-decoration: none; color: inherit; }
   white-space: nowrap;
 }
 
+/* Botão primário: fundo amarelo */
 .btn--yellow {
   background: var(--yellow);
   color: var(--blue);
@@ -70,10 +98,11 @@ a  { text-decoration: none; color: inherit; }
 .btn--yellow:hover {
   background: var(--yellow-2);
   border-color: var(--yellow-2);
-  transform: translateY(-2px);
+  transform: translateY(-2px);                        /* Leve elevação no hover */
   box-shadow: 0 8px 24px rgba(254,196,34,.35);
 }
 
+/* Botão secundário: transparente com borda branca */
 .btn--outline {
   background: transparent;
   color: var(--white);
@@ -84,13 +113,15 @@ a  { text-decoration: none; color: inherit; }
   border-color: var(--white);
 }
 
+/* Modificador: botão ocupa 100% da largura do pai */
 .btn--full { width: 100%; justify-content: center; }
 
+/* ==========================================================
+   SEÇÕES — estilos compartilhados
+   ========================================================== */
+.section { padding: 100px 0; }
 
-.section {
-  padding: 100px 0;
-}
-
+/* Tag decorativa acima dos títulos de seção */
 .section__tag {
   display: inline-block;
   font-size: .8rem;
@@ -105,12 +136,14 @@ a  { text-decoration: none; color: inherit; }
   margin-bottom: 16px;
 }
 
+/* Variante escura da tag — usada em fundos claros */
 .section__tag--light {
   color: var(--blue);
   background: rgba(3,30,59,.12);
   border-color: rgba(3,30,59,.2);
 }
 
+/* Título responsivo com clamp (mínimo, ideal, máximo) */
 .section__title {
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 700;
@@ -118,36 +151,29 @@ a  { text-decoration: none; color: inherit; }
   line-height: 1.25;
   margin-bottom: 20px;
 }
-
 .section__title--light { color: var(--white); }
 
-.section__body {
-  color: var(--text-body);
-  line-height: 1.8;
-  margin-bottom: 16px;
-}
-
+.section__body { color: var(--text-body); line-height: 1.8; margin-bottom: 16px; }
 .section__body--light { color: rgba(255,255,255,.82); }
 
-.section__header {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 60px;
-}
+/* Cabeçalho centralizado de seção */
+.section__header { text-align: center; max-width: 600px; margin: 0 auto 60px; }
 
-/* =========================================================
-   HEADER / NAV
-   ========================================================= */
+
+/* ==========================================================
+   HEADER / NAVBAR
+   Fixo no topo, fundo azul escuro
+   ========================================================== */
 .header {
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 1000;
+  z-index: 1000;                   /* Fica sobre todo o conteúdo */
   background: var(--blue);
   height: var(--nav-height);
   box-shadow: 0 2px 20px rgba(0,0,0,.2);
-  transition: background var(--transition);
 }
 
+/* Flex container: logo à esquerda, menu à direita */
 .nav {
   display: flex;
   align-items: center;
@@ -155,20 +181,32 @@ a  { text-decoration: none; color: inherit; }
   height: var(--nav-height);
 }
 
-.nav__logo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: -.02em;
-}
+/* Logo com tipografia em dois tons */
+/* ✅ AJUSTE 5 — Logo: suporte a texto (padrão) e imagem (opcional)
+   Para imagem: adicionar class="logo__img" na tag <img> */
+.nav__logo { display: flex; align-items: center; }
+.logo      { display: flex; align-items: center; font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; }
 .logo-soft { color: var(--white); }
 .logo-sy   { color: var(--yellow); }
 
-.nav__menu {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  list-style: none;
+/* Quando usar imagem no lugar do texto:
+   altura controlada via CSS — ajuste o valor conforme necessário */
+.logo__img {
+  height: 200px;        /* Altura máxima da logo no header */
+  width: auto;         /* Mantém proporção original da imagem */
+  object-fit: contain;
+  display: block;
 }
+
+.logo__imgf {
+  height: 100px;        /* Altura máxima da logo no header */
+  width: auto;         /* Mantém proporção original da imagem */
+  object-fit: contain;
+  display: block;
+}
+
+/* Lista de links do menu */
+.nav__menu { display: flex; align-items: center; gap: 8px; list-style: none; }
 
 .nav__link {
   color: rgba(255,255,255,.78);
@@ -180,11 +218,10 @@ a  { text-decoration: none; color: inherit; }
 }
 .nav__link:hover { color: var(--white); background: rgba(255,255,255,.07); }
 
-.nav__cta {
-  padding: 9px 22px;
-  font-size: .88rem;
-}
+/* Botão CTA dentro do menu */
+.nav__cta { padding: 9px 22px; font-size: .88rem; }
 
+/* Botão hambúrguer — oculto no desktop, visível no mobile */
 .nav__hamburger {
   display: none;
   flex-direction: column;
@@ -202,48 +239,50 @@ a  { text-decoration: none; color: inherit; }
   display: block;
 }
 
-/* =========================================================
-   HERO
-   ========================================================= */
+
+/* ==========================================================
+   HERO — seção inicial de impacto
+   ========================================================== */
 .hero {
-  min-height: 100vh;
+  min-height: 100vh;               /* Ocupa toda a altura da tela */
   background: var(--blue);
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding-top: var(--nav-height);
+  padding-top: var(--nav-height);  /* Compensa o header fixo */
 }
 
-/* Grid background */
+/* Grade decorativa de linhas sutis no fundo */
 .hero__bg-grid {
   position: absolute; inset: 0;
   background-image:
     linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
   background-size: 60px 60px;
-  pointer-events: none;
+  pointer-events: none;            /* Não interfere nos cliques */
 }
 
-/* Glow blobs */
+/* Efeitos de brilho/glow nos cantos */
 .hero__glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(80px);              /* Blur cria o efeito difuso */
   pointer-events: none;
 }
 .hero__glow--1 {
   width: 500px; height: 500px;
   background: radial-gradient(circle, rgba(254,196,34,.12), transparent 70%);
-  top: -100px; right: -100px;
+  top: -100px; right: -100px;     /* Canto superior direito */
 }
 .hero__glow--2 {
   width: 400px; height: 400px;
   background: radial-gradient(circle, rgba(10,61,120,.5), transparent 70%);
-  bottom: 0; left: 0;
+  bottom: 0; left: 0;             /* Canto inferior esquerdo */
 }
 
+/* Grid de duas colunas: texto | card visual */
 .hero__content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -251,7 +290,7 @@ a  { text-decoration: none; color: inherit; }
   gap: 60px;
   padding: 80px 24px;
   position: relative;
-  z-index: 1;
+  z-index: 1;                      /* Fica acima dos elementos decorativos */
 }
 
 .hero__tag {
@@ -264,6 +303,7 @@ a  { text-decoration: none; color: inherit; }
   opacity: .9;
 }
 
+/* Título com tamanho fluido via clamp() */
 .hero__title {
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 800;
@@ -272,10 +312,8 @@ a  { text-decoration: none; color: inherit; }
   margin-bottom: 20px;
 }
 
-.highlight {
-  color: var(--yellow);
-  display: block;
-}
+/* Palavra destacada em amarelo no título */
+.highlight { color: var(--yellow); display: block; }
 
 .hero__subtitle {
   font-size: 1.1rem;
@@ -285,18 +323,10 @@ a  { text-decoration: none; color: inherit; }
   max-width: 500px;
 }
 
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
+.hero__actions { display: flex; flex-wrap: wrap; gap: 14px; }
 
-/* Hero visual / tech card */
-.hero__visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* --- Card visual decorativo do Hero --- */
+.hero__visual { display: flex; justify-content: center; align-items: center; }
 
 .tech-card {
   background: rgba(255,255,255,.04);
@@ -304,65 +334,35 @@ a  { text-decoration: none; color: inherit; }
   border-radius: 16px;
   padding: 32px;
   width: 320px;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);     /* Efeito vidro fosco */
 }
 
-.tech-card__dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  margin-bottom: 20px;
-}
+/* Ponto colorido no topo do card */
+.tech-card__dot { width: 10px; height: 10px; border-radius: 50%; margin-bottom: 20px; }
 .tech-card__dot--green { background: #25D366; box-shadow: 0 0 12px #25D36680; }
 
-.tech-card__line {
-  height: 8px;
-  background: rgba(255,255,255,.12);
-  border-radius: 100px;
-  margin-bottom: 10px;
-}
+/* Linhas de placeholder decorativas */
+.tech-card__line { height: 8px; background: rgba(255,255,255,.12); border-radius: 100px; margin-bottom: 10px; }
 .tech-card__line--short { width: 60%; }
 
-.tech-card__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin: 20px 0;
-}
+/* Grade de nós/quadrados */
+.tech-card__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
+.tech-node { height: 36px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08); border-radius: 6px; }
+.tech-node--active { background: rgba(254,196,34,.15); border-color: rgba(254,196,34,.3); }
 
-.tech-node {
-  height: 36px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 6px;
-  transition: var(--transition);
-}
-.tech-node--active {
-  background: rgba(254,196,34,.15);
-  border-color: rgba(254,196,34,.3);
-}
-
+/* Barras de progresso */
 .tech-card__bar { margin-bottom: 10px; background: rgba(255,255,255,.08); border-radius: 100px; height: 6px; overflow: hidden; }
 .tech-bar { height: 100%; background: rgba(255,255,255,.3); border-radius: 100px; animation: fillBar 2s ease forwards; }
 .tech-bar--yellow { background: var(--yellow); }
 
-@keyframes fillBar {
-  from { width: 0 !important; }
-}
+/* Animação: barra cresce do 0 até o width inline definido no HTML */
+@keyframes fillBar { from { width: 0 !important; } }
 
-.tech-card__label {
-  display: block;
-  margin-top: 16px;
-  font-size: .8rem;
-  font-weight: 600;
-  color: var(--yellow);
-  letter-spacing: .05em;
-}
+.tech-card__label { display: block; margin-top: 16px; font-size: .8rem; font-weight: 600; color: var(--yellow); letter-spacing: .05em; }
 
-/* Hero scroll hint */
+/* Seta de scroll animada na base do hero */
 .hero__scroll {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
+  position: absolute; bottom: 32px; left: 50%;
   transform: translateX(-50%);
   color: rgba(255,255,255,.4);
   animation: bounce 2s ease-in-out infinite;
@@ -373,28 +373,20 @@ a  { text-decoration: none; color: inherit; }
   50%      { transform: translateX(-50%) translateY(8px); }
 }
 
-/* =========================================================
+
+/* ==========================================================
    QUEM SOMOS
-   ========================================================= */
+   ========================================================== */
 .quem-somos { background: var(--white); }
 
-.quem-somos__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 80px;
-}
-
+/* Duas colunas: texto | visual */
+.quem-somos__grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 80px; }
 .quem-somos__text { max-width: 520px; }
 
-/* Abstract Tech Visual */
-.abstract-tech {
-  position: relative;
-  width: 340px;
-  height: 340px;
-  margin: 0 auto;
-}
+/* --- Visual abstrato com anéis rotativos --- */
+.abstract-tech { position: relative; width: 340px; height: 340px; margin: 0 auto; }
 
+/* Anéis concêntricos que giram continuamente */
 .abstract-tech__ring {
   position: absolute;
   border-radius: 50%;
@@ -404,24 +396,25 @@ a  { text-decoration: none; color: inherit; }
   animation: rotate-ring 20s linear infinite;
 }
 .abstract-tech__ring--1 { width: 200px; height: 200px; }
+/* Anel do meio: gira ao contrário e mais devagar */
 .abstract-tech__ring--2 { width: 280px; height: 280px; animation-direction: reverse; animation-duration: 30s; border-style: dashed; }
+/* Anel externo: mais lento, amarelado */
 .abstract-tech__ring--3 { width: 340px; height: 340px; animation-duration: 40s; border-color: rgba(254,196,34,.2); }
 
 @keyframes rotate-ring { to { rotate: 360deg; } }
 
+/* Círculo central com ícone */
 .abstract-tech__center {
-  position: absolute;
-  top: 50%; left: 50%;
+  position: absolute; top: 50%; left: 50%;
   transform: translate(-50%,-50%);
   width: 80px; height: 80px;
   background: var(--blue);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   box-shadow: 0 0 40px rgba(254,196,34,.2);
 }
 
+/* Chips flutuantes com palavras-chave */
 .floating-chip {
   position: absolute;
   background: var(--white);
@@ -434,25 +427,30 @@ a  { text-decoration: none; color: inherit; }
   color: var(--blue);
   white-space: nowrap;
 }
-.floating-chip--1 { top: 20px; right: 0; animation: float 3s ease-in-out infinite; }
-.floating-chip--2 { bottom: 60px; left: 0;  animation: float 3.5s ease-in-out infinite .5s; }
-.floating-chip--3 { bottom: 20px; right: 30px; animation: float 4s ease-in-out infinite 1s; }
 
+/* Posicionamento e timing individualmente diferentes para cada chip */
+.floating-chip--1 { top: 10px;    right: 10px;  animation: float 3s   ease-in-out infinite; }
+.floating-chip--2 { bottom: 50px; left: 0;      animation: float 3.5s ease-in-out infinite .5s; }
+.floating-chip--3 { bottom: 10px; right: 20px;  animation: float 4s   ease-in-out infinite 1s; }
+.floating-chip--4 { top: 50%;     left: -10px;  transform: translateY(-50%); animation: float 3.2s ease-in-out infinite .2s; }
+.floating-chip--5 { top: 10px;    left: 30px;   animation: float 3.8s ease-in-out infinite .8s; }
+.floating-chip--6 { top: 50%;     right: -10px; transform: translateY(-50%); animation: float 4.2s ease-in-out infinite 1.2s; }
+.floating-chip--7 { bottom: 50px; right: 0;     animation: float 3.6s ease-in-out infinite .4s; }
+
+/* Flutuação vertical suave */
 @keyframes float {
   0%,100% { transform: translateY(0); }
   50%      { transform: translateY(-8px); }
 }
 
-/* =========================================================
+
+/* ==========================================================
    QUEM AJUDAMOS
-   ========================================================= */
+   ========================================================== */
 .quem-ajudamos { background: var(--gray-50); }
 
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
+/* Grid de 3 cards iguais */
+.cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 
 .card {
   background: var(--white);
@@ -462,6 +460,7 @@ a  { text-decoration: none; color: inherit; }
   transition: var(--transition);
   box-shadow: var(--shadow-sm);
 }
+/* Hover: eleva, borda amarela e fundo levemente dourado */
 .card:hover {
   transform: translateY(-6px);
   border-color: var(--yellow-2);
@@ -473,49 +472,55 @@ a  { text-decoration: none; color: inherit; }
   width: 56px; height: 56px;
   background: rgba(3,30,59,.06);
   border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   color: var(--blue);
   margin-bottom: 20px;
   transition: var(--transition);
 }
-.card:hover .card__icon {
-  background: var(--yellow);
+/* Ícone muda para fundo amarelo no hover do card */
+.card:hover .card__icon { background: var(--yellow); color: var(--blue); }
+
+/* Ícone decorativo do card */
+.card__icon {
+  width: 56px; height: 56px;
+  background: rgba(3,30,59,.06);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
   color: var(--blue);
+  margin-bottom: 20px;
+  transition: var(--transition);
 }
+.card:hover .card__icon { background: var(--yellow); color: var(--blue); }
 
-.card__title {
-  font-size: 1.1rem;
+.card__title { font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; line-height: 1.4; }
+
+/* ✅ AJUSTE 4 — Símbolos < e /> em amarelo #FEC422 ao redor do título
+   Aplicado via span.card__tag-sym diretamente no HTML */
+.card__tag-sym {
+  color: var(--yellow);                  /* Amarelo principal #FEC422 */
+  font-family: 'Courier New', monospace; /* Estilo código para aparência de tag HTML */
   font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 10px;
+  font-size: .88em;
+  letter-spacing: -.01em;
 }
+.card__text  { font-size: .9rem; color: var(--text-body); line-height: 1.7; }
 
-.card__text {
-  font-size: .9rem;
-  color: var(--text-body);
-  line-height: 1.7;
-}
 
-/* =========================================================
+/* ==========================================================
    SOLUÇÕES
-   ========================================================= */
+   Fundo azul escuro para contraste com a seção anterior
+   ========================================================== */
 .solucoes { background: var(--blue); }
 
-.solucoes .section__tag { color: var(--yellow); background: rgba(254,196,34,.1); border-color: rgba(254,196,34,.2); }
+/* Tag e título adaptados para fundo escuro */
+.solucoes .section__tag  { color: var(--yellow); background: rgba(254,196,34,.1); border-color: rgba(254,196,34,.2); }
 .solucoes .section__title { color: var(--white); }
 
-.solutions-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
+/* Grid de 3 colunas para os itens de solução */
+.solutions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
 .solution-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 18px;
+  display: flex; align-items: flex-start; gap: 18px;
   background: rgba(255,255,255,.04);
   border: 1px solid rgba(255,255,255,.08);
   border-radius: 10px;
@@ -523,6 +528,7 @@ a  { text-decoration: none; color: inherit; }
   transition: var(--transition);
   cursor: default;
 }
+/* Hover: borda amarelada e leve elevação */
 .solution-item:hover {
   background: rgba(254,196,34,.08);
   border-color: rgba(254,196,34,.25);
@@ -533,51 +539,41 @@ a  { text-decoration: none; color: inherit; }
   width: 52px; height: 52px;
   background: rgba(254,196,34,.1);
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   color: var(--yellow);
-  flex-shrink: 0;
+  flex-shrink: 0;                  /* Impede que o ícone encolha */
   transition: var(--transition);
 }
-.solution-item:hover .solution-item__icon {
-  background: var(--yellow);
-  color: var(--blue);
-}
+.solution-item:hover .solution-item__icon { background: var(--yellow); color: var(--blue); }
 
-.solution-item__title {
-  font-size: .95rem;
-  font-weight: 600;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-.solution-item__text {
-  font-size: .83rem;
-  color: rgba(255,255,255,.6);
-  line-height: 1.55;
-}
+.solution-item__title { font-size: .95rem; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.solution-item__text  { font-size: .83rem; color: rgba(255,255,255,.6); line-height: 1.55; }
 
-/* =========================================================
+
+/* ==========================================================
    DIFERENCIAIS
-   ========================================================= */
+   ========================================================== */
 .diferenciais { background: var(--gray-50); }
 
+/* ✅ AJUSTE 2 — Grid 3×2: substitui o flex wrap por grid fixo de 3 colunas
+   6 itens = 2 linhas exatas, layout simétrico e corporativo no desktop */
 .diferenciais-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 por linha no desktop */
   gap: 16px;
   margin-top: 12px;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Cada diferencial: pílula com ícone de check */
 .diferencial {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: flex; align-items: center; gap: 12px;
   background: var(--white);
   border: 1px solid var(--gray-100);
-  border-radius: 100px;
-  padding: 12px 24px;
+  border-radius: 100px;          /* Balões arredondados — estilo pílula original */
+  padding: 18px 24px;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
   cursor: default;
@@ -588,26 +584,20 @@ a  { text-decoration: none; color: inherit; }
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(254,196,34,.15);
 }
+.diferencial__icon { color: var(--yellow); font-size: 1rem; font-weight: 700; }
+.diferencial__text { font-size: .9rem; font-weight: 600; color: var(--text-dark); }
 
-.diferencial__icon {
-  color: var(--yellow);
-  font-size: 1rem;
-  font-weight: 700;
-}
-.diferencial__text {
-  font-size: .9rem;
-  font-weight: 600;
-  color: var(--text-dark);
-}
 
-/* =========================================================
+/* ==========================================================
    CONTATO
-   ========================================================= */
+   Fundo escuro com grid decorativo
+   ========================================================== */
 .contato {
   background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
+
+/* Grade decorativa mais sutil que a do hero */
 .contato::before {
   content: '';
   position: absolute; inset: 0;
@@ -617,34 +607,19 @@ a  { text-decoration: none; color: inherit; }
   background-size: 50px 50px;
 }
 
-.contato__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-  position: relative;
-  z-index: 1;
-}
+/* Duas colunas: info | formulário */
+.contato__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; position: relative; z-index: 1; }
 
-.contato__links {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 32px;
-}
+.contato__links { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+
 .contato__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: rgba(255,255,255,.75);
-  font-size: .9rem;
-  font-weight: 500;
+  display: inline-flex; align-items: center; gap: 10px;
+  color: rgba(255,255,255,.75); font-size: .9rem; font-weight: 500;
   transition: var(--transition);
 }
 .contato__link:hover { color: var(--yellow); }
-.contato__link svg { opacity: .7; }
 
-/* Form */
+/* --- Formulário --- */
 .contato__form {
   background: var(--white);
   border-radius: 16px;
@@ -652,188 +627,151 @@ a  { text-decoration: none; color: inherit; }
   box-shadow: var(--shadow-lg);
 }
 
-.form-group {
-  margin-bottom: 20px;
-}
+.form-group { margin-bottom: 20px; }
+
 .form-group label {
-  display: block;
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--text-dark);
-  margin-bottom: 7px;
-  letter-spacing: .02em;
+  display: block; font-size: .82rem; font-weight: 600;
+  color: var(--text-dark); margin-bottom: 7px; letter-spacing: .02em;
 }
+
 .form-group input,
 .form-group textarea {
-  width: 100%;
-  padding: 11px 16px;
+  width: 100%; padding: 11px 16px;
   border: 1.5px solid var(--gray-100);
   border-radius: var(--radius);
-  font-family: var(--font);
-  font-size: .9rem;
-  color: var(--text-dark);
-  background: var(--gray-50);
+  font-family: var(--font); font-size: .9rem;
+  color: var(--text-dark); background: var(--gray-50);
   transition: var(--transition);
-  resize: vertical;
+  resize: vertical;                /* Permite redimensionar apenas verticalmente */
   outline: none;
 }
+
+/* Estado focus: borda amarela + sombra suave */
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--yellow);
   background: var(--white);
   box-shadow: 0 0 0 3px rgba(254,196,34,.15);
 }
+
 .form-group input::placeholder,
 .form-group textarea::placeholder { color: var(--gray-300); }
 
+/* Mensagem de sucesso — oculta por padrão */
 .form-success {
-  display: none;
-  margin-top: 16px;
-  padding: 14px 18px;
-  background: #F0FFF4;
-  border: 1px solid #9AE6B4;
-  border-radius: var(--radius);
-  color: #276749;
-  font-size: .88rem;
-  font-weight: 500;
-  text-align: center;
+  display: none; margin-top: 16px; padding: 14px 18px;
+  background: #F0FFF4; border: 1px solid #9AE6B4;
+  border-radius: var(--radius); color: #276749;
+  font-size: .88rem; font-weight: 500; text-align: center;
 }
+/* Classe .active adicionada via JS exibe a mensagem */
 .form-success.active { display: block; }
 
-/* =========================================================
+
+/* ==========================================================
    FOOTER
-   ========================================================= */
-.footer {
-  background: var(--blue);
-  border-top: 1px solid rgba(255,255,255,.06);
-  padding: 32px 0;
-}
+   ========================================================== */
+.footer { background: var(--blue); border-top: 1px solid rgba(255,255,255,.06); padding: 32px 0; }
 
-.footer__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-}
+/* Flex com 3 itens: logo | copyright | links */
+.footer__inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
 
-.footer__copy {
-  font-size: .83rem;
-  color: rgba(255,255,255,.4);
-}
-
-.footer__links {
-  display: flex;
-  gap: 20px;
-}
-.footer__links a {
-  font-size: .83rem;
-  color: rgba(255,255,255,.5);
-  transition: var(--transition);
-}
+.footer__copy { font-size: .83rem; color: rgba(255,255,255,.4); }
+.footer__links { display: flex; gap: 20px; }
+.footer__links a { font-size: .83rem; color: rgba(255,255,255,.5); transition: var(--transition); }
 .footer__links a:hover { color: var(--yellow); }
 
-/* =========================================================
-   WHATSAPP FLOAT
-   ========================================================= */
+
+/* ==========================================================
+   BOTÃO FLUTUANTE DO WHATSAPP
+   Fixo no canto inferior direito com animação de pulso
+   ========================================================== */
 .whatsapp-float {
-  position: fixed;
-  bottom: 28px; right: 28px;
+  position: fixed; bottom: 28px; right: 28px;
   z-index: 999;
   width: 58px; height: 58px;
-  background: #25D366;
+  background: #25D366;             /* Verde oficial do WhatsApp */
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   box-shadow: 0 6px 24px rgba(37,211,102,.4);
   animation: pulse-wa 2.5s ease-in-out infinite;
   transition: transform var(--transition), box-shadow var(--transition);
 }
-.whatsapp-float:hover {
-  transform: scale(1.12);
-  box-shadow: 0 10px 32px rgba(37,211,102,.55);
-  animation: none;
-}
+/* Para animação de pulso e aplica escala no hover */
+.whatsapp-float:hover { transform: scale(1.12); box-shadow: 0 10px 32px rgba(37,211,102,.55); animation: none; }
+
+/* Pulso: sombra que expande e desaparece, simulando um ping */
 @keyframes pulse-wa {
   0%,100% { box-shadow: 0 6px 24px rgba(37,211,102,.4), 0 0 0 0 rgba(37,211,102,.4); }
   50%      { box-shadow: 0 6px 24px rgba(37,211,102,.4), 0 0 0 12px rgba(37,211,102,0); }
 }
 
-/* =========================================================
-   ANIMATIONS
-   ========================================================= */
+
+/* ==========================================================
+   ANIMAÇÕES DE ENTRADA
+   ========================================================== */
+
+/* fade-in: usado nos elementos do hero ao carregar a página */
 .fade-in {
   opacity: 0;
   transform: translateY(24px);
   animation: fadeIn .8s ease forwards;
 }
+/* Delay para o card visual aparecer após o texto */
 .fade-in--delay { animation-delay: .2s; }
 
-@keyframes fadeIn {
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-/* Scroll reveal */
-.reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity .7s ease, transform .7s ease;
-}
-.reveal--right {
-  transform: translateX(32px);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: none;
-}
+/* reveal: elementos ocultos que aparecem ao entrar no viewport */
+/* Controlado pelo IntersectionObserver no script.js */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+.reveal--right { transform: translateX(32px); } /* Variante: desliza da direita */
+.reveal.visible { opacity: 1; transform: none; } /* Estado final após ser observado */
+
+/* Delays escalonados para animações em sequência */
 .reveal--delay-1 { transition-delay: .15s; }
 .reveal--delay-2 { transition-delay: .3s; }
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
 
-/* Tablet */
+/* ==========================================================
+   RESPONSIVIDADE
+   Breakpoints do maior para o menor (mobile-last approach)
+   ========================================================== */
+
+/* Tablet largo: soluções em 2 colunas */
+/* Tablet largo: grids de 3 colunas passam a 2 */
 @media (max-width: 1024px) {
-  .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+  .solutions-grid    { grid-template-columns: repeat(2, 1fr); }
+  .diferenciais-grid { grid-template-columns: repeat(2, 1fr); } /* 2×3 no tablet */
 }
 
+/* Tablet: layouts de 2 colunas viram 1 coluna */
 @media (max-width: 900px) {
-  .hero__content     { grid-template-columns: 1fr; text-align: center; }
-  .hero__subtitle    { margin: 0 auto 36px; }
-  .hero__actions     { justify-content: center; }
-  .hero__visual      { display: none; }
-  .quem-somos__grid  { grid-template-columns: 1fr; text-align: center; }
-  .quem-somos__text  { max-width: 100%; }
-  .cards-grid        { grid-template-columns: 1fr; }
-  .contato__grid     { grid-template-columns: 1fr; gap: 40px; }
+  .hero__content    { grid-template-columns: 1fr; text-align: center; }
+  .hero__subtitle   { margin: 0 auto 36px; }
+  .hero__actions    { justify-content: center; }
+  .hero__visual     { display: none; }
+  .quem-somos__grid { grid-template-columns: 1fr; text-align: center; }
+  .quem-somos__text { max-width: 100%; }
+  .cards-grid       { grid-template-columns: 1fr; }
+  .contato__grid    { grid-template-columns: 1fr; gap: 40px; }
 }
 
-/* Mobile */
+/* Mobile: menu hambúrguer e ajustes gerais */
 @media (max-width: 768px) {
   :root { --nav-height: 64px; }
 
   .nav__menu {
-    position: fixed;
-    top: var(--nav-height); left: 0; right: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    background: var(--blue);
-    padding: 24px;
-    gap: 4px;
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
+    position: fixed; top: var(--nav-height); left: 0; right: 0;
+    flex-direction: column; align-items: flex-start;
+    background: var(--blue); padding: 24px; gap: 4px;
+    transform: translateY(-100%); opacity: 0; pointer-events: none;
     transition: transform .3s ease, opacity .3s ease;
     border-top: 1px solid rgba(255,255,255,.08);
     box-shadow: 0 20px 40px rgba(0,0,0,.3);
   }
-  .nav__menu.open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: all;
-  }
+  .nav__menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+
   .nav__menu li { width: 100%; }
   .nav__link { display: block; padding: 12px 16px; width: 100%; }
   .nav__cta  { margin-top: 8px; width: 100%; text-align: center; justify-content: center; }
@@ -844,24 +782,24 @@ a  { text-decoration: none; color: inherit; }
   .nav__hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   .section { padding: 72px 0; }
-
-  .solutions-grid { grid-template-columns: 1fr; }
-
-  .diferenciais-grid { gap: 10px; }
-  .diferencial { font-size: .85rem; padding: 10px 18px; }
-
+  .solutions-grid    { grid-template-columns: 1fr; }
+  .diferenciais-grid { grid-template-columns: 1fr; } /* 1 coluna no mobile */
   .contato__form { padding: 28px 20px; }
-
   .footer__inner { flex-direction: column; text-align: center; }
-
   .whatsapp-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
 }
 
+/* Mobile pequeno: ajustes finos de tipografia e botões */
 @media (max-width: 480px) {
   .hero__title { font-size: 1.9rem; }
   .hero__actions { flex-direction: column; }
   .hero__actions .btn { width: 100%; justify-content: center; }
-  .tech-card { width: 100%; }
+
+  /* ✅ AJUSTE 5 — Logo menor em telas muito pequenas */
+  .logo { font-size: 1.25rem; }
+  .logo__img { height: 28px; }
+
+  /* Reduz os anéis para caber na tela pequena */
   .abstract-tech { width: 260px; height: 260px; }
   .abstract-tech__ring--3 { width: 260px; height: 260px; }
   .abstract-tech__ring--2 { width: 210px; height: 210px; }

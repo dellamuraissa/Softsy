@@ -3,66 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--descrição e palavras-chave para mecanismos de busca -->
   <meta name="description" content="Softsy — Transformamos tecnologia em crescimento estratégico. Soluções digitais inteligentes para educação, empresas e órgãos públicos." />
   <meta name="keywords" content="software, tecnologia, sistemas, automação, gestão, educação, empresas, governo, Softsy" />
   <meta name="author" content="Softsy" />
+
+  <!-- como o site aparece ao ser compartilhado em redes sociais -->
   <meta property="og:title" content="Softsy — Tecnologia em Crescimento Estratégico" />
   <meta property="og:description" content="Desenvolvemos soluções digitais inteligentes que impulsionam eficiência, inovação e performance." />
   <meta property="og:type" content="website" />
+
   <title>Softsy — Tecnologia em Crescimento Estratégico</title>
+
+  <!-- Pré-conexão com o Google Fonts para carregamento mais rápido -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Importação da fonte Poppins em diferentes pesos -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Folha de estilos principal -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ===== HEADER / NAVBAR ===== -->
+  <!-- =====================================================
+       HEADER FIXO — fica sempre visível no topo da página
+       ===================================================== -->
   <header class="header" id="header">
     <nav class="nav container">
+
+      <!-- ✅ AJUSTE 5 — Logo flexível: troque entre texto e imagem sem mexer no CSS
+           Para ativar imagem: comente o bloco "Opção 1" e descomente "Opção 2" -->
       <a href="#inicio" class="nav__logo">
-        <span class="logo-soft">Soft</span><span class="logo-sy">sy</span>
+        <div class="logo">
+          <!-- Opção 1: Logo em texto (padrão atual) -->
+          <!--<span class="logo-soft">Soft</span><span class="logo-sy">sy</span> -->
+          <img src="img/logo.png" alt="Softsy" class="logo__img" />
+        
+        </div>
       </a>
 
+      <!-- Menu de navegação principal -->
       <ul class="nav__menu" id="navMenu">
-        <li><a href="#inicio" class="nav__link">Início</a></li>
-        <li><a href="#quem-somos" class="nav__link">Quem Somos</a></li>
+        <li><a href="#inicio"        class="nav__link">Início</a></li>
+        <li><a href="#quem-somos"    class="nav__link">Quem Somos</a></li>
         <li><a href="#quem-ajudamos" class="nav__link">Quem Ajudamos</a></li>
-        <li><a href="#solucoes" class="nav__link">Soluções</a></li>
-        <li><a href="#contato" class="nav__link">Contato</a></li>
+        <li><a href="#solucoes"      class="nav__link">Soluções</a></li>
+        <li><a href="#contato"       class="nav__link">Contato</a></li>
+
+        <!-- Botão de destaque que leva à seção de contato -->
         <li>
           <a href="#contato" class="btn btn--yellow nav__cta">Fale Conosco</a>
         </li>
       </ul>
 
+      <!-- Botão hambúrguer — visível apenas no mobile -->
       <button class="nav__hamburger" id="hamburger" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
+        <span></span> <!-- linha 1 do ícone -->
+        <span></span> <!-- linha 2 do ícone -->
+        <span></span> <!-- linha 3 do ícone -->
       </button>
+
     </nav>
   </header>
 
   <main>
 
-    <!-- ===== HERO ===== -->
+    <!-- =====================================================
+         HERO — primeira seção, impacto visual imediato
+         ===================================================== -->
     <section class="hero" id="inicio">
+
+      <!-- Grade decorativa de fundo (linhas sutis) -->
       <div class="hero__bg-grid"></div>
+
+      <!-- Brilhos decorativos posicionados nos cantos -->
       <div class="hero__glow hero__glow--1"></div>
       <div class="hero__glow hero__glow--2"></div>
 
+      <!-- Conteúdo principal do hero: texto + card visual -->
       <div class="container hero__content">
+
+        <!-- Bloco de texto com animação de fade-in -->
         <div class="hero__text fade-in">
+
+          <!-- Tag de destaque acima do título -->
           <span class="hero__tag">Inovação · Estratégia · Propósito</span>
+
+          <!-- Título principal da empresa -->
           <h1 class="hero__title">
             Transformamos tecnologia em
             <span class="highlight">crescimento estratégico.</span>
           </h1>
+
+          <!-- Subtítulo descritivo -->
           <p class="hero__subtitle">
             Desenvolvemos soluções digitais inteligentes que impulsionam
             eficiência, inovação e performance.
           </p>
+
+          <!-- Botões de chamada para ação -->
           <div class="hero__actions">
+            <!-- Botão primário: leva à seção de soluções -->
             <a href="#solucoes" class="btn btn--yellow">Conheça nossas soluções</a>
-            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn btn--outline">
+
+            <!-- ✅ AJUSTE 3 — Substitua SEUNUMEROAQUI pelo número real (somente dígitos) -->
+            <a href="https://wa.me/55SEUNUMEROAQUI" target="_blank" rel="noopener" class="btn btn--outline">
+              <!-- Ícone SVG do WhatsApp embutido -->
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
                 <path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.509 5.823L0 24l6.335-1.493A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.491-5.23-1.349l-.374-.222-3.882.915.977-3.775-.243-.389A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
@@ -72,11 +121,18 @@
           </div>
         </div>
 
+        <!-- Card visual tecnológico — decorativo, aparece com delay -->
         <div class="hero__visual fade-in fade-in--delay">
           <div class="tech-card">
+
+            <!-- Indicador verde (estilo "online/ativo") -->
             <div class="tech-card__dot tech-card__dot--green"></div>
+
+            <!-- Linhas decorativas simulando conteúdo de texto -->
             <div class="tech-card__line"></div>
             <div class="tech-card__line tech-card__line--short"></div>
+
+            <!-- Grade de nós tecnológicos (alguns destacados em amarelo) -->
             <div class="tech-card__grid">
               <div class="tech-node"></div>
               <div class="tech-node tech-node--active"></div>
@@ -85,6 +141,8 @@
               <div class="tech-node"></div>
               <div class="tech-node tech-node--active"></div>
             </div>
+
+            <!-- Barras de progresso animadas -->
             <div class="tech-card__bar">
               <div class="tech-bar" style="width:80%"></div>
             </div>
@@ -94,21 +152,30 @@
             <div class="tech-card__bar">
               <div class="tech-bar" style="width:92%"></div>
             </div>
+
+            <!-- Rótulo de métrica fictícia decorativa -->
             <span class="tech-card__label">Performance +94%</span>
           </div>
         </div>
+
       </div>
 
+      <!-- Seta de scroll suave para a próxima seção -->
       <a href="#quem-somos" class="hero__scroll" aria-label="Rolar para baixo">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M6 9l6 6 6-6"/>
         </svg>
       </a>
+
     </section>
 
-    <!-- ===== QUEM SOMOS ===== -->
+    <!-- =====================================================
+         QUEM SOMOS — apresentação institucional da empresa
+         ===================================================== -->
     <section class="section quem-somos" id="quem-somos">
       <div class="container quem-somos__grid">
+
+        <!-- Coluna esquerda: texto institucional -->
         <div class="quem-somos__text reveal">
           <span class="section__tag">Quem Somos</span>
           <h2 class="section__title">Uma empresa movida por inovação e propósito</h2>
@@ -124,47 +191,72 @@
           <a href="#contato" class="btn btn--yellow">Fale com nossa equipe</a>
         </div>
 
+        <!-- Coluna direita: visual abstrato com anéis e chips flutuantes -->
         <div class="quem-somos__visual reveal reveal--right">
           <div class="abstract-tech">
+
+            <!-- Anéis decorativos rotativos (animação CSS) -->
             <div class="abstract-tech__ring abstract-tech__ring--1"></div>
             <div class="abstract-tech__ring abstract-tech__ring--2"></div>
             <div class="abstract-tech__ring abstract-tech__ring--3"></div>
+
+            <!-- Círculo central com ícone de estrela -->
             <div class="abstract-tech__center">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FEC422" stroke-width="1.5">
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
               </svg>
             </div>
+
+            <!-- Chips flutuantes com palavras-chave da empresa -->
+            <!-- Cada chip tem posição e delay de animação diferentes -->
             <div class="floating-chip floating-chip--1">Inovação</div>
             <div class="floating-chip floating-chip--2">Estratégia</div>
             <div class="floating-chip floating-chip--3">Escalável</div>
+            <div class="floating-chip floating-chip--4">Tecnologia</div>
+            <div class="floating-chip floating-chip--5">Performance</div>
+            <div class="floating-chip floating-chip--6">Segurança</div>
+            <div class="floating-chip floating-chip--7">Agilidade</div>
+
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- ===== QUEM AJUDAMOS ===== -->
+    <!-- =====================================================
+         QUEM AJUDAMOS — públicos atendidos pela Softsy
+         ===================================================== -->
     <section class="section quem-ajudamos" id="quem-ajudamos">
       <div class="container">
+
+        <!-- Cabeçalho centralizado da seção -->
         <div class="section__header reveal">
           <span class="section__tag">Quem Ajudamos</span>
           <h2 class="section__title">Soluções para quem mais precisa de tecnologia</h2>
         </div>
 
+        <!-- Grid com os 3 cards de público-alvo -->
+        <!-- ✅ AJUSTE 4 — Títulos no formato <Texto /> com símbolos em amarelo via .card__tag-sym -->
         <div class="cards-grid">
+
+          <!-- Card 1: Educação -->
           <div class="card reveal">
-            <div class="card__icon">
+           <!-- <div class="card__icon">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
               </svg>
-            </div>
-            <h3 class="card__title">🎓 Educação</h3>
+           </div> <!-- modificar talvez!!!!! -->
+            <h3 class="card__title">
+              <span class="card__tag-sym">&lt;</span>Educação<span class="card__tag-sym"> /&gt;</span>
+            </h3>
             <p class="card__text">
               Sistemas de gestão educacional completos: matrículas, frequência,
               notas, comunicação entre escola e família, e muito mais.
             </p>
           </div>
 
+          <!-- Card 2: Empresas Privadas -->
           <div class="card reveal reveal--delay-1">
             <div class="card__icon">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -174,13 +266,16 @@
                 <line x1="10" y1="14" x2="14" y2="14"/>
               </svg>
             </div>
-            <h3 class="card__title">🏢 Empresas Privadas</h3>
+            <h3 class="card__title">
+              <span class="card__tag-sym">&lt;</span>Empresas Privadas<span class="card__tag-sym"> /&gt;</span>
+            </h3>
             <p class="card__text">
               Soluções para otimização e automação de processos internos,
               reduzindo custos e aumentando a eficiência operacional.
             </p>
           </div>
 
+          <!-- Card 3: Órgãos Públicos -->
           <div class="card reveal reveal--delay-2">
             <div class="card__icon">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -188,26 +283,35 @@
                 <polyline points="9 22 9 12 15 12 15 22"/>
               </svg>
             </div>
-            <h3 class="card__title">🏛 Órgãos Públicos</h3>
+            <h3 class="card__title">
+              <span class="card__tag-sym">&lt;</span>Órgãos Públicos<span class="card__tag-sym"> /&gt;</span>
+            </h3>
             <p class="card__text">
               Sistemas administrativos modernos para digitalização de processos,
               transparência e eficiência na gestão pública.
             </p>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ===== SOLUÇÕES ===== -->
+    <!-- =====================================================
+         SOLUÇÕES — produtos/serviços oferecidos
+         ✅ AJUSTE 1 — 6 soluções em grid 3×2 harmônico
+         ===================================================== -->
     <section class="section solucoes" id="solucoes">
       <div class="container">
+
         <div class="section__header reveal">
           <span class="section__tag">Soluções</span>
           <h2 class="section__title">O que entregamos para o seu negócio</h2>
         </div>
 
+        <!-- Grid 3 colunas × 2 linhas = 6 soluções -->
         <div class="solutions-grid">
 
+          <!-- Solução 1: Sistemas Personalizados -->
           <div class="solution-item reveal">
             <div class="solution-item__icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -221,6 +325,7 @@
             </div>
           </div>
 
+          <!-- Solução 2: Automação de Processos -->
           <div class="solution-item reveal reveal--delay-1">
             <div class="solution-item__icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -236,6 +341,7 @@
             </div>
           </div>
 
+          <!-- Solução 3: Gestão Administrativa -->
           <div class="solution-item reveal reveal--delay-2">
             <div class="solution-item__icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -255,12 +361,13 @@
             </div>
           </div>
 
+          <!-- Solução 4: Relatórios Estratégicos -->
           <div class="solution-item reveal">
             <div class="solution-item__icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <line x1="18" y1="20" x2="18" y2="10"/>
                 <line x1="12" y1="20" x2="12" y2="4"/>
-                <line x1="6" y1="20" x2="6" y2="14"/>
+                <line x1="6"  y1="20" x2="6"  y2="14"/>
               </svg>
             </div>
             <div>
@@ -269,11 +376,12 @@
             </div>
           </div>
 
+          <!-- Solução 5: Integrações Inteligentes -->
           <div class="solution-item reveal reveal--delay-1">
             <div class="solution-item__icon">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <circle cx="18" cy="18" r="3"/>
-                <circle cx="6" cy="6" r="3"/>
+                <circle cx="6"  cy="6"  r="3"/>
                 <path d="M6 21V9a9 9 0 0 0 9 9"/>
               </svg>
             </div>
@@ -283,27 +391,46 @@
             </div>
           </div>
 
+          <!-- ✅ Solução 6 — nova: Suporte e Consultoria -->
+          <div class="solution-item reveal reveal--delay-2">
+            <div class="solution-item__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="solution-item__title">Suporte e Consultoria</h4>
+              <p class="solution-item__text">Acompanhamento contínuo e estratégico após a entrega.</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ===== DIFERENCIAIS ===== -->
+    <!-- =====================================================
+         DIFERENCIAIS — pontos fortes da empresa
+         ✅ AJUSTE 2 — 6 diferenciais em grid 3×2 simétrico
+         ===================================================== -->
     <section class="section diferenciais" id="diferenciais">
       <div class="container">
+
         <div class="section__header reveal">
           <span class="section__tag">Diferenciais</span>
           <h2 class="section__title">Por que escolher a Softsy?</h2>
         </div>
+
+        <!-- Grid 3 colunas × 2 linhas = 6 itens — alinhamento perfeito no desktop -->
         <div class="diferenciais-grid">
           <div class="diferencial reveal">
             <span class="diferencial__icon">✔</span>
             <span class="diferencial__text">Tecnologia escalável</span>
           </div>
-          <div class="diferencial reveal reveal--delay-1">
+          <div class="diferencial reveal">
             <span class="diferencial__icon">✔</span>
             <span class="diferencial__text">Atendimento estratégico</span>
           </div>
-          <div class="diferencial reveal reveal--delay-2">
+          <div class="diferencial reveal">
             <span class="diferencial__icon">✔</span>
             <span class="diferencial__text">Desenvolvimento personalizado</span>
           </div>
@@ -311,17 +438,27 @@
             <span class="diferencial__icon">✔</span>
             <span class="diferencial__text">Foco em performance</span>
           </div>
-          <div class="diferencial reveal reveal--delay-1">
+          <div class="diferencial reveal">
             <span class="diferencial__icon">✔</span>
             <span class="diferencial__text">Parceria de longo prazo</span>
           </div>
+          <!-- ✅ Diferencial 6 — novo -->
+          <div class="diferencial reveal">
+            <span class="diferencial__icon">✔</span>
+            <span class="diferencial__text">Suporte pós-entrega</span>
+          </div>
         </div>
+
       </div>
     </section>
 
-    <!-- ===== CONTATO ===== -->
+    <!-- =====================================================
+         CONTATO — formulário e informações de contato
+         ===================================================== -->
     <section class="section contato" id="contato">
       <div class="container contato__grid">
+
+        <!-- Coluna esquerda: texto e links de contato direto -->
         <div class="contato__info reveal">
           <span class="section__tag section__tag--light">Contato</span>
           <h2 class="section__title section__title--light">Vamos conversar sobre o seu projeto?</h2>
@@ -329,41 +466,37 @@
             Entre em contato e descubra como a Softsy pode transformar
             sua operação com tecnologia de alto desempenho.
           </p>
-          <div class="contato__links">
-            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="contato__link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.509 5.823L0 24l6.335-1.493A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.491-5.23-1.349l-.374-.222-3.882.915.977-3.775-.243-.389A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-              </svg>
-              WhatsApp
-            </a>
-            <a href="mailto:contato@softsy.com.br" class="contato__link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-              contato@softsy.com.br
-            </a>
-          </div>
         </div>
 
+        <!-- Coluna direita: formulário de contato -->
+        <!-- novalidate: desativa validação nativa do browser (usamos JS customizado) -->
         <form class="contato__form reveal reveal--right" id="contactForm" novalidate>
+
+          <!-- Campo: Nome obrigatório -->
           <div class="form-group">
             <label for="nome">Nome *</label>
             <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
           </div>
+
+          <!-- Campo: Empresa opcional -->
           <div class="form-group">
             <label for="empresa">Empresa</label>
             <input type="text" id="empresa" name="empresa" placeholder="Nome da sua empresa" />
           </div>
+
+          <!-- Campo: E-mail obrigatório -->
           <div class="form-group">
             <label for="email">E-mail *</label>
             <input type="email" id="email" name="email" placeholder="softsy@gmail.com" required />
           </div>
+
+          <!-- Campo: Mensagem obrigatória -->
           <div class="form-group">
             <label for="mensagem">Mensagem *</label>
             <textarea id="mensagem" name="mensagem" rows="5" placeholder="Descreva seu projeto ou necessidade..." required></textarea>
           </div>
+
+          <!-- Botão de envio -->
           <button type="submit" class="btn btn--yellow btn--full">
             Enviar mensagem
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -371,20 +504,30 @@
               <polygon points="22 2 15 22 11 13 2 9 22 2"/>
             </svg>
           </button>
+
+          <!-- Mensagem de sucesso — oculta por padrão, exibida via JS -->
+          <!-- aria-live: anuncia para leitores de tela quando aparecer -->
           <div class="form-success" id="formSuccess" aria-live="polite">
             ✅ Mensagem enviada! Entraremos em contato em breve.
           </div>
+
         </form>
+
       </div>
     </section>
 
   </main>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- =====================================================
+       FOOTER — rodapé com logo, copyright e links rápidos
+       ===================================================== -->
   <footer class="footer">
     <div class="container footer__inner">
+      <!-- ✅ AJUSTE 5 — Logo flexível no footer (mesma estrutura do header) -->
       <a href="#inicio" class="nav__logo">
-        <span class="logo-soft">Soft</span><span class="logo-sy">sy</span>
+        <div class="logo">
+          <img src="img/logo.png" alt="Softsy" class="logo__img" /> 
+        </div>
       </a>
       <p class="footer__copy">© 2026 Softsy. Todos os direitos reservados.</p>
       <nav class="footer__links">
@@ -395,8 +538,11 @@
     </div>
   </footer>
 
-  <!-- ===== BOTÃO FLUTUANTE WHATSAPP ===== -->
-  <a href="https://wa.me/5500000000000"
+  <!-- =====================================================
+       BOTÃO FLUTUANTE DO WHATSAPP
+       ✅ AJUSTE 3 — Substitua SEUNUMEROAQUI pelo número real (somente dígitos)
+       ===================================================== -->
+  <a href="https://wa.me/55SEUNUMEROAQUI"
      target="_blank"
      rel="noopener"
      class="whatsapp-float"
@@ -407,6 +553,7 @@
     </svg>
   </a>
 
+  <!-- Script principal carregado no final para não bloquear o HTML -->
   <script src="script.js"></script>
 </body>
 </html>
