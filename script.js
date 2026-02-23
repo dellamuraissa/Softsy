@@ -1,18 +1,6 @@
-/* =========================================================
-   SOFTSY — script.js
-   Responsável por: navbar, hambúrguer, scroll reveal,
-   link ativo, formulário e scroll suave
-   ========================================================= */
 
-/* IIFE: envolve tudo numa função auto-executável para não
-   poluir o escopo global com variáveis */
 (function () {
-  'use strict'; /* Modo estrito: ajuda a pegar erros silenciosos */
-
-  /* -------------------------------------------------------
-     SELEÇÃO DE ELEMENTOS DO DOM
-     Feita uma única vez no início para melhor performance
-  ------------------------------------------------------- */
+  'use strict'; 
   const header      = document.getElementById('header');
   const hamburger   = document.getElementById('hamburger');
   const navMenu     = document.getElementById('navMenu');
