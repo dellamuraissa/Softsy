@@ -16,7 +16,6 @@
 
   <title>Softsy — Tecnologia em Crescimento Estratégico</title>
 
-  <!-- Pré-conexão com o Google Fonts para carregamento mais rápido -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -25,6 +24,7 @@
 
   <!-- Folha de estilos principal -->
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="img/logoPreta.png">
 </head>
 <body>
 
@@ -34,8 +34,6 @@
   <header class="header" id="header">
     <nav class="nav container">
 
-      <!-- ✅ AJUSTE 5 — Logo flexível: troque entre texto e imagem sem mexer no CSS
-           Para ativar imagem: comente o bloco "Opção 1" e descomente "Opção 2" -->
       <a href="#inicio" class="nav__logo">
         <div class="logo">
           <!-- Opção 1: Logo em texto (padrão atual) -->
@@ -255,7 +253,6 @@
             <!-- Cada chip tem posição e delay de animação diferentes -->
             <div class="floating-chip floating-chip--1">Inovação</div>
             <div class="floating-chip floating-chip--2">Estratégia</div>
-            <div class="floating-chip floating-chip--3">Escalável</div>
             <div class="floating-chip floating-chip--4">Tecnologia</div>
             <div class="floating-chip floating-chip--5">Performance</div>
             <div class="floating-chip floating-chip--6">Segurança</div>
@@ -284,7 +281,7 @@
           <div class="card reveal">
             <center>
             <h3 class="card__title">
-              <span class="card__tag-sym">&lt;</span> Educação<span class="card__tag-sym"> /&gt;</span>
+              <span class="card__tag-sym">&lt;</span> Educação<span class="card__tag-sym">/&gt;</span>
             </h3>
             <p class="card__text">
               Sistemas de gestão educacional completos: matrículas, frequência,
@@ -296,7 +293,7 @@
           <div class="card reveal reveal--delay-1">
             <center>
             <h3 class="card__title">
-              <span class="card__tag-sym">&lt;</span> Empresas Privadas<span class="card__tag-sym"> /&gt;</span>
+              <span class="card__tag-sym">&lt;</span> Empresas Privadas<span class="card__tag-sym">/&gt;</span>
             </h3>
             <p class="card__text">
               Soluções para otimização e automação de processos internos,
@@ -308,7 +305,7 @@
           <div class="card reveal reveal--delay-2">
             <center>
             <h3 class="card__title">
-              <span class="card__tag-sym">&lt;</span> Órgãos Públicos<span class="card__tag-sym"> /&gt;</span>
+              <span class="card__tag-sym">&lt;</span> Órgãos Públicos<span class="card__tag-sym">/&gt;</span>
             </h3>
             <p class="card__text">
               Sistemas administrativos modernos para digitalização de processos,
@@ -432,6 +429,7 @@
       </div>
     </section>
 
+    
     <section class="section diferenciais" id="diferenciais">
       <div class="container">
 
@@ -486,6 +484,29 @@
             Entre em contato e descubra como a Softsy pode transformar
             sua operação com tecnologia de alto desempenho.
           </p>
+
+          <!-- Endereço -->
+          <div class="contato__endereco">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:3px">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Av. Trindade, 254 · Bethaville I<br>Barueri – SP, 06404-326</span>
+          </div>
+
+          <!-- Mapa embutido -->
+          <div class="contato__mapa">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.902!2d-46.8706!3d-23.5063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf03d18a0804e6f%3A0x741b69de4abf82e4!2sAv.%20Trindade%2C%20254%20-%20Bethaville%20I%2C%20Barueri%20-%20SP%2C%2006404-326!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
+              width="100%"
+              height="220"
+              style="border:0;border-radius:12px"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Localização Softsy">
+            </iframe>
+          </div>
         </div>
 
         <!-- Coluna direita: formulário de contato -->
@@ -543,7 +564,7 @@
        ===================================================== -->
   <footer class="footer">
     <div class="container footer__inner">
-      <!-- ✅ AJUSTE 5 — Logo flexível no footer (mesma estrutura do header) -->
+      
       <a href="#inicio" class="nav__logo">
         <div class="logo">
           <img src="img/logo.png" alt="Softsy" class="logo__imgf" /> 
@@ -558,10 +579,7 @@
     </div>
   </footer>
 
-  <!-- =====================================================
-       BOTÃO FLUTUANTE DO WHATSAPP
-       ✅ AJUSTE 3 — Substitua SEUNUMEROAQUI pelo número real (somente dígitos)
-       ===================================================== -->
+
   <a href="https://wa.me/55SEUNUMEROAQUI"
      target="_blank"
      rel="noopener"
