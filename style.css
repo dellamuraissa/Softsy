@@ -570,7 +570,20 @@ a  { text-decoration: none; color: inherit; }
 .quem-ajudamos { background: var(--gray-50); }
 
 /* Grid de 3 cards iguais */
-.cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center;
+  justify-content: center;
+}
+
+.cards-grid .card {
+  width: 100%;
+}
 
 .card {
   background: var(--white);
