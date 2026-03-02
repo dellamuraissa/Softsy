@@ -43,6 +43,13 @@
   --nav-height: 84px;      /* Altura do header fixo */
 }
 
+:root {
+  /* Vars usados por badges e transições */
+  --r-pill: 999px; /* raio para badges tipo pill */
+  --ease: var(--transition);
+  --gold: var(--yellow);
+}
+
 /* Scroll suave nativo ao clicar em âncoras */
 html { scroll-behavior: smooth; }
 
@@ -117,37 +124,37 @@ a  { text-decoration: none; color: inherit; }
 .btn--full { width: 100%; justify-content: center; }
 
 /* Badge estilo Softsy para link de produto (Educsy) */
-.softsy-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: transparent;
-  color: var(--white);
-  border: 1px solid rgba(255,255,255,.14);
-  font-weight: 700;
-  font-size: .92rem;
-  text-transform: lowercase;
-  transition: var(--transition);
-}
-.softsy-badge span { color: var(--yellow); font-weight: 800; text-transform: none; }
-.softsy-badge:hover {
-  background: rgba(255,255,255,.06);
-  border-color: var(--yellow);
-  transform: translateY(-3px);
+.softsy-badge{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:.67rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-pill);padding:4px 12px;transition:color var(--ease),border-color var(--ease);}
+.softsy-badge:hover{color:var(--gold);border-color:rgba(254,196,34,.3)}
+.softsy-badge span{color:var(--gold);font-weight:800}
+
+/* Centraliza o badge dentro da navbar no desktop */
+.nav__menu .softsy-badge {
+  /* Mantém o badge em fluxo (posição original) e centraliza verticalmente
+     entre o topo e a base do header */
+  margin-top: 0;         /* remove margem que empurrava para baixo */
+  align-self: center;    /* alinha ao centro do eixo cruzado do flex */
+  margin-left: 8px;     /* pequeno espaçamento antes do CTA */
 }
 
 /* Variante do badge para o footer: tamanho reduzido e espaçamento junto à logo */
 .softsy-badge--footer {
-  padding: 4px 8px;
-  font-size: .75rem;
-  border-radius: 8px;
+  /* Formatação herdada do .softsy-badge, ajustada para o footer */
+  padding: 3px 8px;
+  font-size: .62rem;
+  border-radius: var(--r-pill);
   background: transparent;
-  border-color: rgba(255,255,255,.08);
-  margin-left: 6px; /* espaçamento reduzido entre logo e badge */
+  border: 1px solid rgba(255,255,255,.1);
+  margin-left: 2px; /* bem próximo da logo */
+  color: rgba(255,255,255,.25);
 }
-.footer .softsy-badge--footer span { color: var(--yellow); }
+.footer .softsy-badge--footer span { color: var(--gold); font-weight:800; }
+
+/* Garante que o link da logo e o badge no footer fiquem encostados */
+.footer .nav__logo { display: flex; align-items: center; gap: 2px; }
+
+/* Centraliza verticalmente o badge ao lado da logo no footer */
+.footer .softsy-badge--footer { align-self: center; margin-left: 4px; }
 
 /* Garantir que o badge não apareça grande em telas pequenas */
 @media (max-width: 480px) {
@@ -223,7 +230,9 @@ a  { text-decoration: none; color: inherit; }
   height: var(--nav-height);
   /* Impede que filhos estiquem o nav além da altura definida */
   overflow: visible;
+  position: relative; /* permite posicionamento absoluto de elementos filhos (badge central) */
 }
+
 
 .nav__logo {
   display: flex;
@@ -248,7 +257,7 @@ a  { text-decoration: none; color: inherit; }
 }
 
 .logo__imgf {
-  height: 44px;
+  height: 60px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -854,6 +863,13 @@ a  { text-decoration: none; color: inherit; }
 .footer__links { display: flex; gap: 20px; }
 .footer__links a { font-size: .83rem; color: rgba(255,255,255,.5); transition: var(--transition); }
 .footer__links a:hover { color: var(--yellow); }
+
+/* Garantir que todos os filhos do footer fiquem alinhados verticalmente */
+.footer__inner > * { align-self: center; }
+
+/* Ajustes específicos para a logo no footer */
+.footer .nav__logo { padding: 0; margin: 0; }
+.footer .logo__imgf { height: 56px; display: block; margin: 0; }
 
 
 /* ==========================================================
