@@ -116,6 +116,44 @@ a  { text-decoration: none; color: inherit; }
 /* Modificador: botão ocupa 100% da largura do pai */
 .btn--full { width: 100%; justify-content: center; }
 
+/* Badge estilo Softsy para link de produto (Educsy) */
+.softsy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,.14);
+  font-weight: 700;
+  font-size: .92rem;
+  text-transform: lowercase;
+  transition: var(--transition);
+}
+.softsy-badge span { color: var(--yellow); font-weight: 800; text-transform: none; }
+.softsy-badge:hover {
+  background: rgba(255,255,255,.06);
+  border-color: var(--yellow);
+  transform: translateY(-3px);
+}
+
+/* Variante do badge para o footer: tamanho reduzido e espaçamento junto à logo */
+.softsy-badge--footer {
+  padding: 4px 8px;
+  font-size: .75rem;
+  border-radius: 8px;
+  background: transparent;
+  border-color: rgba(255,255,255,.08);
+  margin-left: 6px; /* espaçamento reduzido entre logo e badge */
+}
+.footer .softsy-badge--footer span { color: var(--yellow); }
+
+/* Garantir que o badge não apareça grande em telas pequenas */
+@media (max-width: 480px) {
+  .footer .softsy-badge--footer { padding: 3px 6px; font-size: .72rem; margin-left: 6px; }
+}
+
 /* ==========================================================
    SEÇÕES — estilos compartilhados
    ========================================================== */
