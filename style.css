@@ -568,15 +568,14 @@ a  { text-decoration: none; color: inherit; }
    QUEM AJUDAMOS
    ========================================================== */
 .quem-ajudamos { background: var(--gray-50); }
+.quem-ajudamos .container { max-width: 1400px; }
 
 /* Grid de 3 cards iguais */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  gap: 24px;
+  width: 100%;
 }
 
 .card {
@@ -587,6 +586,7 @@ a  { text-decoration: none; color: inherit; }
   padding: 36px 28px;
   transition: var(--transition);
   box-shadow: var(--shadow-sm);
+  text-align: center; /* Alinha título e texto ao centro */
 }
 /* Hover: eleva, borda amarela e fundo levemente dourado */
 .card:hover {
@@ -602,7 +602,7 @@ a  { text-decoration: none; color: inherit; }
   border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
   color: var(--blue);
-  margin-bottom: 20px;
+  margin: 0 auto 20px; /* Centraliza o ícone */
   transition: var(--transition);
 }
 /* Ícone muda para fundo amarelo no hover do card */
