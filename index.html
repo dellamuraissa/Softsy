@@ -1,600 +1,772 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Educsy - Plataforma completa de gestao educacional. Um produto Softsy."/>
+<title>Educsy - Gestao Educacional Inteligente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+<link rel="icon" href="img/logoPreta.png"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --ink:#031E3B;--ink-2:#052A54;--ink-3:#0A3D78;
+  --nav-height:72px;
+  --blue:var(--ink);
+  --yellow:var(--gold);
+  --radius:8px;
+  --transition:all .22s ease;
+  --gold:#FEC422;--gold-2:#FFD65A;--gold-dk:#C9980A;
+  --white:#FFFFFF;--off:#F5F7FA;--off-2:#EDF0F5;
+  --line:#DDE3ED;--line-2:#C8D0DF;
+  --txt-1:#031E3B;--txt-2:#3D5068;--txt-3:#7A8FA8;
+  --r:6px;--r-2:14px;--r-3:22px;--r-pill:100px;
+  --sh-1:0 2px 10px rgba(3,30,59,.07);--sh-2:0 8px 30px rgba(3,30,59,.11);--sh-3:0 20px 60px rgba(3,30,59,.16);
+  --sh-gold:0 6px 24px rgba(254,196,34,.40);
+  --ease:.24s cubic-bezier(.4,0,.2,1);
+  --fh:'Bricolage Grotesque',sans-serif;--fb:'DM Sans',sans-serif;
+  --nav:72px;
+}
+body{font-family:var(--fb);background:var(--white);color:var(--txt-2);font-size:16px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.w{width:100%;max-width:1160px;margin-inline:auto;padding-inline:clamp(20px,5vw,56px)}
 
-  <!--descrição e palavras-chave para mecanismos de busca -->
-  <meta name="description" content="Softsy — Transformamos tecnologia em crescimento estratégico. Soluções digitais inteligentes para educação, empresas e órgãos públicos." />
-  <meta name="keywords" content="software, tecnologia, sistemas, automação, gestão, educação, empresas, governo, Softsy" />
-  <meta name="author" content="Softsy" />
+/* BOTOES */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--fb);font-size:.875rem;font-weight:600;border:2px solid transparent;border-radius:var(--r-pill);padding:11px 24px;cursor:pointer;transition:transform var(--ease),box-shadow var(--ease),background var(--ease),border-color var(--ease),color var(--ease);white-space:nowrap;line-height:1;}
+.btn-y{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.btn-y:hover{background:var(--gold-2);border-color:var(--gold-2);transform:translateY(-2px);box-shadow:var(--sh-gold)}
+.btn-dark{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.btn-dark:hover{background:var(--ink-2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(3,30,59,.28)}
+.btn-ghost-light{background:transparent;color:var(--white);border-color:rgba(255,255,255,.35)}
+.btn-ghost-light:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.7)}
+.btn-ghost-dark{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.btn-ghost-dark:hover{background:var(--off);border-color:var(--txt-3)}
+.btn-sm{padding:8px 18px;font-size:.8rem}
 
-  <!-- como o site aparece ao ser compartilhado em redes sociais -->
-  <meta property="og:title" content="Softsy — Tecnologia em Crescimento Estratégico" />
-  <meta property="og:description" content="Desenvolvemos soluções digitais inteligentes que impulsionam eficiência, inovação e performance." />
-  <meta property="og:type" content="website" />
+/* Nav-specific larger CTA */
+.nav-right .btn.btn-sm{padding:12px 24px;font-size:1rem}
 
-  <title>Softsy — Tecnologia em Crescimento Estratégico</title>
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-height);min-height:var(--nav-height);max-height:var(--nav-height);background:var(--white);box-shadow:0 2px 20px rgba(0,0,0,.06);overflow:visible}
+.nav.scrolled{box-shadow:0 6px 24px rgba(3,30,59,.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:var(--nav-height);overflow:visible}
+.nav-logo img{height:72px;max-height:72px;width:auto;display:block;object-fit:contain;transition:height .25s ease}
+.nav-links{display:flex;align-items:center;gap:0;list-style:none}
+.nav-links a{font-family:var(--fb);font-size:1rem;font-weight:500;color:var(--txt-2);padding:10px 16px;position:relative;transition:color var(--ease);} 
+.nav-links a::after{content:'';position:absolute;bottom:-1px;left:16px;right:16px;height:2px;background:var(--gold);border-radius:2px;transform:scaleX(0);transition:transform var(--ease);} 
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after,.nav-links a.on::after{transform:scaleX(1)}
+.nav-links a.on{color:var(--ink);font-weight:600}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-badge{font-family:var(--fb);font-size:.67rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--txt-3);border:1px solid var(--line);border-radius:var(--r-pill);padding:3px 10px;}
+.nav-badge span{color:var(--gold-dk);font-weight:800}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;overflow:visible}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px;transition:var(--transition)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-drawer{display:none;position:fixed;top:var(--nav);inset-inline:0;background:var(--white);border-bottom:1px solid var(--line);box-shadow:var(--sh-2);flex-direction:column;padding:16px clamp(20px,5vw,56px) 28px;gap:4px;z-index:899;transform:translateY(-110%);opacity:0;transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .3s ease;}
+.mobile-drawer.open{transform:translateY(0);opacity:1}
+.mobile-drawer a{font-family:var(--fb);font-size:1rem;font-weight:500;color:var(--txt-2);padding:12px 16px;border-radius:var(--r);transition:background var(--ease),color var(--ease);} 
+.mobile-drawer a:hover{background:var(--off);color:var(--ink)}
+.mobile-drawer .btn{width:100%;justify-content:center;margin-top:12px}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr;min-height:100vh;padding-top:var(--nav);} 
+.hero-l{background:var(--ink);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:72px clamp(24px,5vw,72px) 72px clamp(24px,6vw,80px);position:relative;overflow:hidden;}
+.hero-l::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1.5px,transparent 1.5px);background-size:32px 32px;pointer-events:none;}
+.hero-l::after{content:'';position:absolute;top:-160px;right:-160px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(254,196,34,.15),transparent 65%);pointer-events:none;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(254,196,34,.1);border:1px solid rgba(254,196,34,.25);border-radius:var(--r-pill);padding:5px 14px;font-family:var(--fb);font-size:.72rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;position:relative;z-index:1;}
+.hero-eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--gold);display:block;box-shadow:0 0 8px var(--gold);}
+.hero-h1{font-family:var(--fh);font-size:clamp(2.2rem,4vw,3.6rem);font-weight:800;color:var(--white);line-height:1.1;letter-spacing:-.5px;margin-bottom:20px;position:relative;z-index:1;}
+.hero-h1 em{font-style:normal;color:var(--gold);position:relative;}
+.hero-h1 em::after{content:'';position:absolute;left:0;bottom:-4px;width:100%;height:3px;background:var(--gold);border-radius:2px;opacity:.5;}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.68);line-height:1.8;max-width:640px;margin-bottom:36px;position:relative;z-index:1;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1;justify-content:center}
+.hero-social{display:flex;align-items:center;gap:14px;margin-top:44px;padding-top:32px;border-top:1px solid rgba(255,255,255,.1);position:relative;z-index:1;}
+.hs-avs{display:flex}
+.hs-av{width:30px;height:30px;border-radius:50%;border:2px solid var(--ink);background:var(--ink-2);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:.6rem;font-weight:800;color:var(--gold);margin-left:-8px;}
+.hs-av:first-child{margin-left:0}
+.hs-text{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.4;}
+.hs-text strong{color:var(--gold-2);font-weight:600}
+.hero-r{background:var(--off);display:flex;align-items:center;justify-content:center;padding:48px clamp(20px,3vw,48px);position:relative;overflow:hidden;}
+.hero-r::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:40px 40px;opacity:.5;pointer-events:none;}
 
-  <!-- Importação da fonte Poppins em diferentes pesos -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+/* DASHBOARD */
+.dash{width:100%;max-width:460px;background:var(--white);border-radius:var(--r-3);box-shadow:var(--sh-3),0 0 0 1px var(--line);overflow:hidden;position:relative;z-index:1;animation:float-dash 6s ease-in-out infinite;}
+@keyframes float-dash{0%,100%{transform:translateY(0) rotate(0deg)}33%{transform:translateY(-8px) rotate(.3deg)}66%{transform:translateY(-4px) rotate(-.2deg)}}
+.dash-titlebar{background:var(--ink);padding:11px 16px;display:flex;align-items:center;gap:10px;}
+.d-dots{display:flex;gap:6px}
+.d-dot{width:10px;height:10px;border-radius:50%}
+.d-r{background:#FF5F57}.d-y{background:#FEBC2E}.d-g{background:#27C93F}
+.dash-titlebar-label{flex:1;text-align:center;font-family:var(--fh);font-size:.68rem;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.4px;}
+.dash-live{font-size:.6rem;font-weight:700;color:var(--gold);background:rgba(254,196,34,.12);border:1px solid rgba(254,196,34,.22);border-radius:var(--r-pill);padding:2px 8px;}
+.dash-body{padding:16px;display:grid;gap:12px}
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.kpi{background:var(--off);border:1px solid var(--line);border-radius:var(--r);padding:11px 10px;}
+.kpi-lbl{font-size:.58rem;font-weight:600;color:var(--txt-3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.kpi-val{font-family:var(--fh);font-size:1.22rem;font-weight:800;color:var(--ink)}
+.kpi-dt{font-size:.6rem;font-weight:600;margin-top:2px}
+.kpi-up{color:#1DB954}.kpi-warn{color:var(--gold-dk)}
+.chart-box{background:var(--off);border:1px solid var(--line);border-radius:var(--r);padding:12px;}
+.chart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.chart-title{font-size:.65rem;font-weight:600;color:var(--txt-2)}
+.chart-badge{font-size:.58rem;font-weight:700;color:var(--ink);background:rgba(3,30,59,.07);padding:2px 8px;border-radius:var(--r-pill);}
+.bars{display:flex;align-items:flex-end;gap:5px;height:52px}
+.bar{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--gold),#C98B00)}
+.b1{height:38%}.b2{height:74%}.b3{height:52%}.b4{height:88%}.b5{height:62%}.b6{height:80%}.b7{height:68%}
+.rows{display:grid;gap:6px}
+.row{display:flex;align-items:center;justify-content:space-between;background:var(--off);border:1px solid var(--line);border-radius:var(--r);padding:8px 11px;}
+.row-lbl{font-size:.67rem;color:var(--txt-2);font-weight:500}
+.tag{font-size:.58rem;font-weight:700;padding:2px 8px;border-radius:var(--r-pill)}
+.tag-g{background:rgba(29,185,84,.1);color:#1DB954;border:1px solid rgba(29,185,84,.2)}
+.tag-w{background:rgba(254,196,34,.14);color:#a06d00;border:1px solid rgba(254,196,34,.28)}
 
-  <!-- Folha de estilos principal -->
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="img/logoPreta.png">
+/* SECOES */
+.sec{padding:96px 0}
+.sec-alt{background:var(--off)}
+.sec-ink{background:var(--ink)}
+.sec-label{display:flex;align-items:center;gap:10px;font-family:var(--fb);font-size:.72rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold-dk);margin-bottom:10px;}
+.sec-label::before{content:'';width:20px;height:2px;background:var(--gold);border-radius:2px}
+.sec-label-light{color:var(--gold)}
+.sec-label-light::before{background:var(--gold)}
+.sec-h{font-family:var(--fh);font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:800;color:var(--txt-1);line-height:1.15;letter-spacing:-.3px;margin-bottom:14px;}
+.sec-h-light{color:var(--white)}
+.sec-p{font-size:.95rem;color:var(--txt-2);line-height:1.8;max-width:540px}
+.sec-p-light{color:rgba(255,255,255,.65)}
+.sec-center{text-align:center}
+.sec-center .sec-p{margin-inline:auto}
+.sec-center .sec-label{justify-content:center}
+.sec-center .sec-label::before{display:none}
+.sec-center .sec-label::after{content:'';width:20px;height:2px;background:var(--gold);border-radius:2px;}
+
+/* BENTO */
+.bento{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:52px;}
+.bc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-2);padding:28px;box-shadow:var(--sh-1);transition:transform var(--ease),box-shadow var(--ease),border-color var(--ease);position:relative;overflow:hidden;}
+.bc:hover{transform:translateY(-4px);box-shadow:var(--sh-2);border-color:var(--line-2)}
+.bc-wide{grid-column:span 2}
+.bc-dark{background:var(--ink);border-color:transparent;color:var(--white);}
+.bc-dark:hover{border-color:rgba(254,196,34,.25)}
+.bc-gold{background:var(--gold);border-color:transparent;color:var(--ink);}
+.bc-gold:hover{background:var(--gold-2);border-color:transparent}
+.bc-num{font-family:var(--fh);font-size:clamp(2.4rem,4vw,3.2rem);font-weight:800;line-height:1;letter-spacing:-1px;color:var(--ink);}
+.bc-num-white{color:var(--white)}
+.bc-num sup{font-size:.45em;vertical-align:super;letter-spacing:0}
+.bc-lbl{font-size:.83rem;color:var(--txt-2);margin-top:6px;line-height:1.4}
+.bc-lbl-muted{color:rgba(255,255,255,.5)}
+.bc-icon{width:44px;height:44px;border-radius:var(--r);background:var(--off);display:flex;align-items:center;justify-content:center;color:var(--ink);margin-bottom:16px;transition:background var(--ease);}
+.bc:hover .bc-icon{background:var(--gold);color:var(--ink)}
+.bc-dark .bc-icon{background:rgba(255,255,255,.08);color:var(--gold)}
+.bc-dark:hover .bc-icon{background:rgba(254,196,34,.2)}
+.bc-title{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--txt-1);margin-bottom:8px;}
+.bc-title-white{color:var(--white)}
+.bc-text{font-size:.85rem;color:var(--txt-2);line-height:1.65}
+.bc-text-muted{color:rgba(255,255,255,.55)}
+.bc-chip{position:absolute;top:16px;right:16px;font-size:.62rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;background:rgba(254,196,34,.12);color:var(--gold-dk);border:1px solid rgba(254,196,34,.25);border-radius:var(--r-pill);padding:3px 10px;}
+.bc-chip-white{background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.15)}
+
+/* SOLUCOES */
+.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px;}
+.sol-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-2);padding:28px 24px;box-shadow:var(--sh-1);position:relative;overflow:hidden;transition:transform var(--ease),box-shadow var(--ease),border-color var(--ease);}
+.sol-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform .3s cubic-bezier(.4,0,.2,1);}
+.sol-card:hover{transform:translateY(-5px);box-shadow:var(--sh-2);border-color:var(--line-2);}
+.sol-card:hover::before{transform:scaleY(1)}
+.sol-icon{width:46px;height:46px;border-radius:var(--r);background:var(--ink);color:var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:16px;flex-shrink:0;transition:background var(--ease),color var(--ease);}
+.sol-card:hover .sol-icon{background:var(--gold);color:var(--ink)}
+.sol-title{font-family:var(--fh);font-size:.98rem;font-weight:700;color:var(--txt-1);margin-bottom:8px;}
+.sol-body{font-size:.83rem;color:var(--txt-2);line-height:1.65}
+.sol-more{display:inline-flex;align-items:center;gap:4px;font-size:.76rem;font-weight:600;color:var(--gold-dk);margin-top:14px;opacity:0;transform:translateY(4px);transition:opacity var(--ease),transform var(--ease);}
+.sol-card:hover .sol-more{opacity:1;transform:translateY(0)}
+
+/* DIFERENCIAIS */
+.dif-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:52px;}
+.dif-item{display:flex;align-items:flex-start;gap:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-2);padding:20px;transition:background var(--ease),border-color var(--ease);}
+.dif-item:hover{background:rgba(254,196,34,.07);border-color:rgba(254,196,34,.2);}
+.dif-n{font-family:var(--fh);font-size:1.35rem;font-weight:800;color:var(--gold);opacity:.5;line-height:1;flex-shrink:0;width:36px;}
+.dif-h{font-family:var(--fh);font-size:.92rem;font-weight:700;color:var(--white);margin-bottom:5px;}
+.dif-p{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.55}
+
+/* COMO FUNCIONA */
+.timeline{display:grid;grid-template-columns:1fr 2fr;gap:64px;align-items:start;margin-top:52px;}
+.tl-visual{position:sticky;top:calc(var(--nav) + 32px);background:var(--ink);border-radius:var(--r-3);overflow:hidden;box-shadow:var(--sh-3);}
+.tl-visual-bar{background:rgba(255,255,255,.04);padding:11px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.06);}
+.tl-visual-bar span{font-family:var(--fh);font-size:.65rem;font-weight:600;color:rgba(255,255,255,.35);letter-spacing:.3px}
+.tl-visual-body{padding:20px;display:grid;gap:10px}
+.tv-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);padding:12px;transition:background .4s ease;}
+.tv-card.glow{background:rgba(254,196,34,.08);border-color:rgba(254,196,34,.2);}
+.tv-card-h{font-family:var(--fh);font-size:.72rem;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:8px;}
+.tv-bar-row{display:grid;gap:6px}
+.tv-bar-wrap{display:flex;align-items:center;gap:8px}
+.tv-bar-lbl{font-size:.6rem;color:rgba(255,255,255,.3);width:48px;flex-shrink:0}
+.tv-bar-bg{flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.tv-bar-fill{height:100%;background:var(--gold);border-radius:3px;animation:growBar 2s ease forwards}
+.tv-bar-fill.slow{animation-delay:.3s}
+.tv-bar-fill.slower{animation-delay:.6s}
+@keyframes growBar{from{width:0!important}}
+.steps{display:grid;gap:0}
+.step{display:flex;gap:24px;padding-bottom:40px;position:relative;}
+.step:not(:last-child)::after{content:'';position:absolute;left:22px;top:52px;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold),transparent);border-radius:2px;}
+.step-num{width:46px;height:46px;flex-shrink:0;border-radius:50%;background:var(--gold);color:var(--ink);font-family:var(--fh);font-size:1rem;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px rgba(254,196,34,.12);position:relative;z-index:1;transition:transform var(--ease),box-shadow var(--ease);}
+.step:hover .step-num{transform:scale(1.1);box-shadow:0 0 0 8px rgba(254,196,34,.18),var(--sh-gold)}
+.step-body{padding-top:8px}
+.step-h{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--txt-1);margin-bottom:6px;}
+.step-p{font-size:.85rem;color:var(--txt-2);line-height:1.65}
+
+/* METRICAS */
+.met-strip{background:var(--ink);padding:72px 0;}
+.met-inner{display:grid;grid-template-columns:repeat(4,1fr);}
+.met-cell{text-align:center;padding:16px 24px;border-right:1px solid rgba(255,255,255,.07);transition:background var(--ease);}
+.met-cell:last-child{border-right:none}
+.met-cell:hover{background:rgba(254,196,34,.05)}
+.met-ico{font-size:1.4rem;margin-bottom:10px}
+.met-n{font-family:var(--fh);font-size:clamp(2rem,3vw,2.8rem);font-weight:800;color:var(--gold);line-height:1;}
+.met-l{font-size:.82rem;color:rgba(255,255,255,.45);margin-top:8px}
+
+/* DEPOIMENTOS */
+.depo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px;}
+.depo-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-2);padding:28px 24px;box-shadow:var(--sh-1);display:flex;flex-direction:column;transition:transform var(--ease),box-shadow var(--ease);}
+.depo-card:hover{transform:translateY(-5px);box-shadow:var(--sh-2)}
+.depo-stars{display:flex;gap:3px;margin-bottom:14px}
+.depo-stars span{color:var(--gold);font-size:.85rem}
+.depo-quote-mark{font-family:var(--fh);font-size:3.8rem;font-weight:900;color:var(--gold);line-height:.5;margin-bottom:14px;opacity:.6;}
+.depo-txt{font-size:.88rem;color:var(--txt-2);line-height:1.78;flex:1;}
+.depo-txt strong{color:var(--txt-1);font-weight:600}
+.depo-div{height:1px;background:var(--line);margin:20px 0}
+.depo-author{display:flex;align-items:center;gap:12px}
+.depo-av{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:.72rem;font-weight:800;color:var(--gold);border:2px solid rgba(254,196,34,.2);}
+.depo-name{font-family:var(--fh);font-size:.85rem;font-weight:700;color:var(--txt-1);}
+.depo-role{font-size:.73rem;color:var(--txt-3);margin-top:1px}
+
+/* CTA */
+.cta-sec{background:var(--ink);padding:100px 0;text-align:center;position:relative;overflow:hidden;}
+.cta-sec::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.03) 1.5px,transparent 1.5px);background-size:32px 32px;}
+.cta-sec::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(254,196,34,.1),transparent 65%);pointer-events:none;}
+.cta-sec .w{position:relative;z-index:1;max-width:680px}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+
+/* CONTATO */
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start;}
+.contact-addr{display:flex;gap:10px;align-items:flex-start;font-size:.87rem;color:var(--txt-2);margin-top:20px;line-height:1.6;}
+.contact-addr svg{color:var(--gold-dk);flex-shrink:0;margin-top:3px}
+.contact-map{margin-top:20px;border-radius:var(--r-2);overflow:hidden;border:1px solid var(--line);box-shadow:var(--sh-1);}
+@media(max-width:900px){.contact-map{display:none}}
+.form-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r-3);padding:36px;box-shadow:var(--sh-2);}
+.form-head{font-family:var(--fh);font-size:1.1rem;font-weight:800;color:var(--txt-1);margin-bottom:24px;}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:.75rem;font-weight:700;color:var(--txt-1);margin-bottom:6px;letter-spacing:.02em;}
+.fg input,.fg textarea{width:100%;padding:10px 14px;border:1.5px solid var(--line);border-radius:var(--r);font-family:var(--fb);font-size:.88rem;color:var(--txt-1);background:var(--off);transition:border-color var(--ease),box-shadow var(--ease),background var(--ease);resize:vertical;outline:none;}
+.fg input:focus,.fg textarea:focus{border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(254,196,34,.14);}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--txt-3)}
+.form-submit{width:100%;padding:13px;border-radius:var(--r-pill);background:var(--ink);color:var(--gold);font-family:var(--fh);font-size:.95rem;font-weight:700;border:2px solid var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background var(--ease),transform var(--ease),box-shadow var(--ease);margin-top:8px;}
+.form-submit:hover{background:var(--ink-2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(3,30,59,.28);}
+.form-ok{display:none;margin-top:14px;padding:13px;background:#F0FFF4;border:1px solid #9AE6B4;border-radius:var(--r);color:#276749;font-size:.83rem;text-align:center;font-weight:500;}
+.form-ok.on{display:block}
+
+/* FOOTER */
+.footer{background:#020F1E;padding:56px 0 28px;}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:28px;}
+.footer-brand img{height:44px;margin-bottom:14px}
+.footer-brand p{font-size:.8rem;color:rgba(255,255,255,.3);line-height:1.7;max-width:220px;}
+.softsy-badge{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:.67rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-pill);padding:4px 12px;transition:color var(--ease),border-color var(--ease);}
+.softsy-badge:hover{color:var(--gold);border-color:rgba(254,196,34,.3)}
+.softsy-badge span{color:var(--gold);font-weight:800}
+.foot-col h5{font-family:var(--fh);font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px;}
+.foot-col ul{list-style:none;display:grid;gap:9px}
+.foot-col ul a{font-size:.82rem;color:rgba(255,255,255,.42);transition:color var(--ease);}
+.foot-col ul a:hover{color:var(--gold)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.footer-copy{font-size:.75rem;color:rgba(255,255,255,.22)}
+.footer-by{font-size:.72rem;color:rgba(255,255,255,.2);}
+.footer-by a{color:rgba(254,196,34,.6);transition:color var(--ease)}
+.footer-by a:hover{color:var(--gold)}
+
+/* WHATSAPP */
+.wa{position:fixed;bottom:26px;right:26px;z-index:999;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(37,211,102,.4);animation:wa-ping 2.5s ease-in-out infinite;transition:transform var(--ease);}
+.wa:hover{transform:scale(1.12);animation:none;box-shadow:0 10px 28px rgba(37,211,102,.5)}
+@keyframes wa-ping{0%,100%{box-shadow:0 6px 22px rgba(37,211,102,.4),0 0 0 0 rgba(37,211,102,.35)}50%{box-shadow:0 6px 22px rgba(37,211,102,.4),0 0 0 10px rgba(37,211,102,0)}}
+
+/* ANIMACOES DE ENTRADA */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.reveal-right.in{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.18s}.d3{transition-delay:.26s}.d4{transition-delay:.34s}
+.hero-l > *{opacity:0;transform:translateY(18px);animation:up-anim .65s ease forwards}
+.hero-l .hero-eyebrow{animation-delay:.04s}
+.hero-l .hero-h1{animation-delay:.14s}
+.hero-l .hero-sub{animation-delay:.24s}
+.hero-l .hero-btns{animation-delay:.34s}
+.hero-l .hero-social{animation-delay:.44s}
+.hero-r .dash{opacity:0;transform:translateY(22px);animation:up-anim .75s .28s ease forwards}
+@keyframes up-anim{to{opacity:1;transform:translateY(0)}}
+
+/* RESPONSIVO */
+@media(max-width:1100px){
+  .sol-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .bento{grid-template-columns:1fr 1fr}
+  .bc-wide{grid-column:span 2}
+}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-r{display:none}
+  .hero-l{padding:64px clamp(20px,5vw,56px) 80px;text-align:center}
+  .hero-btns{justify-content:center}
+  .hero-social{justify-content:center}
+  .hero-sub{margin-inline:auto}
+  .timeline{grid-template-columns:1fr}
+  .tl-visual{display:none}
+  .dif-grid{grid-template-columns:1fr}
+  .met-inner{grid-template-columns:1fr 1fr}
+  .met-cell:nth-child(2){border-right:none}
+  .met-cell:nth-child(3){border-top:1px solid rgba(255,255,255,.07)}
+  .depo-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr;gap:40px}
+}
+@media(max-width:768px){
+  :root{--nav:64px}
+  .nav-links,.nav-right{display:none}
+  .burger{display:flex}
+  .mobile-drawer{display:flex}
+  .bento{grid-template-columns:1fr}
+  .bc-wide{grid-column:span 1}
+  .sol-grid{grid-template-columns:1fr}
+  .met-inner{grid-template-columns:1fr 1fr}
+  .hero-btns .btn{width:100%;max-width:300px;justify-content:center}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+@media(max-width:480px){
+  :root{--nav:60px}
+  .met-inner{grid-template-columns:1fr}
+  .met-cell{border-right:none;border-bottom:1px solid rgba(255,255,255,.07)}
+  .met-cell:last-child{border-bottom:none}
+  .form-card{padding:24px 18px}
+  .bento{gap:10px}
+  .bc{padding:20px}
+  .hero-l{padding:40px 18px 56px 18px}
+  .hero-h1{font-size:clamp(1.6rem,5vw,2.4rem)}
+  .hero-sub{max-width:460px}
+}
+</style>
 </head>
 <body>
 
-  <!-- =====================================================
-       HEADER FIXO — fica sempre visível no topo da página
-       ===================================================== -->
-  <header class="header" id="header">
-    <nav class="nav container">
-
-      <a href="#inicio" class="nav__logo">
-        <div class="logo">
-          <!-- Opção 1: Logo em texto (padrão atual) -->
-          <!--<span class="logo-soft">Soft</span><span class="logo-sy">sy</span> -->
-          <img src="img/logo.png" alt="Softsy" class="logo__img" />
-        
-        </div>
-      </a>
-
-      <!-- Menu de navegação principal -->
-      <ul class="nav__menu" id="navMenu">
-        <li><a href="#inicio"        class="nav__link">Início</a></li>
-        <li><a href="#quem-somos"    class="nav__link">Quem Somos</a></li>
-        <li><a href="#quem-ajudamos" class="nav__link">Quem Ajudamos</a></li>
-        <li><a href="#solucoes"      class="nav__link">Soluções</a></li>
-        <li><a href="#contato"       class="nav__link">Contato</a></li>
-
-        <!-- Botão de destaque que leva à seção de contato -->
-        <!-- Badge para o produto Educsy (abre em nova aba) -->
-        <li>
-          <a href="https://dellamuraissa.github.io/Softsy/" class="softsy-badge" target="_blank" rel="noopener noreferrer">produto <span>Educsy</span></a>
-        </li>
-        <!-- Botão de destaque que leva à seção de contato -->
-        <li>
-          <a href="#contato" class="btn btn--yellow nav__cta">Fale Conosco</a>
-        </li>
-      </ul>
-
-      <!-- Botão hambúrguer — visível apenas no mobile -->
-      <button class="nav__hamburger" id="hamburger" aria-label="Abrir menu">
-        <span></span> <!-- linha 1 do ícone -->
-        <span></span> <!-- linha 2 do ícone -->
-        <span></span> <!-- linha 3 do ícone -->
-      </button>
-
-    </nav>
-  </header>
-
-  <main>
-
-    <!-- =====================================================
-         HERO — primeira seção, impacto visual imediato
-         ===================================================== -->
-    <section class="hero" id="inicio">
-
-      <!-- Grade decorativa de fundo (linhas sutis) -->
-      <div class="hero__bg-grid"></div>
-
-      <!-- Brilhos decorativos posicionados nos cantos -->
-      <div class="hero__glow hero__glow--1"></div>
-      <div class="hero__glow hero__glow--2"></div>
-
-      <!-- Conteúdo principal do hero: texto + card visual -->
-      <div class="container hero__content">
-
-        <!-- Bloco de texto com animação de fade-in -->
-        <div class="hero__text fade-in">
-
-          <!-- Tag de destaque acima do título -->
-          <span class="hero__tag">Inovação · Estratégia · Propósito</span>
-
-          <!-- Título principal da empresa -->
-          <h1 class="hero__title">
-            Transformamos tecnologia em
-            <span class="highlight">crescimento estratégico.</span>
-          </h1>
-
-          <!-- Subtítulo descritivo -->
-          <p class="hero__subtitle">
-            Desenvolvemos soluções digitais inteligentes que impulsionam
-            eficiência, inovação e performance.
-          </p>
-
-          <!-- Botões de chamada para ação -->
-          <div class="hero__actions">
-            <!-- Botão primário: leva à seção de soluções -->
-            <a href="#solucoes" class="btn btn--yellow">Conheça nossas soluções</a>
-
-            <a href="https://wa.me/55SEUNUMEROAQUI" target="_blank" rel="noopener" class="btn btn--outline">
-              <!-- Ícone SVG do WhatsApp embutido -->
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.509 5.823L0 24l6.335-1.493A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.491-5.23-1.349l-.374-.222-3.882.915.977-3.775-.243-.389A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-              </svg>
-              Falar no WhatsApp
-            </a>
-          </div>
-        </div>
-
-        <!-- Animação tecnológica lado direito do hero -->
-        <div class="hero__visual fade-in fade-in--delay" aria-hidden="true">
-          <div class="tech-orbit">
-
-            <!-- SVG principal: circuito/globo tecnológico outline -->
-            <svg class="tech-orbit__svg" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-
-              <!-- Círculo externo principal -->
-              <circle cx="210" cy="210" r="190" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-
-              <!-- Anel rotativo 1 (tracejado) -->
-              <circle cx="210" cy="210" r="160" stroke="rgba(254,196,34,0.18)" stroke-width="1" stroke-dasharray="12 8" class="orbit-ring orbit-ring--1"/>
-
-              <!-- Anel rotativo 2 (tracejado fino, inverso) -->
-              <circle cx="210" cy="210" r="125" stroke="rgba(255,255,255,0.10)" stroke-width="1" stroke-dasharray="5 14" class="orbit-ring orbit-ring--2"/>
-
-              <!-- Anel interno -->
-              <circle cx="210" cy="210" r="90" stroke="rgba(254,196,34,0.12)" stroke-width="1"/>
-
-              <!-- Núcleo central -->
-              <circle cx="210" cy="210" r="44" stroke="rgba(254,196,34,0.5)" stroke-width="1.5"/>
-              <circle cx="210" cy="210" r="30" stroke="rgba(254,196,34,0.25)" stroke-width="1"/>
-
-              <!-- Ícone central: código / brackets -->
-              <text x="210" y="218" text-anchor="middle" font-family="monospace" font-size="22" fill="rgba(254,196,34,0.85)" class="tech-orbit__code">&lt;/&gt;</text>
-
-              <!-- Linhas de conexão (eixos cruzados) -->
-              <line x1="210" y1="20" x2="210" y2="400" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-              <line x1="20" y1="210" x2="400" y2="210" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-
-              <!-- Nó orbital 1 (topo) - ponto amarelo + label -->
-              <g class="orbit-node orbit-node--1">
-                <circle cx="210" cy="50" r="7" fill="rgba(254,196,34,0.9)" stroke="rgba(254,196,34,0.3)" stroke-width="8"/>
-                <rect x="222" y="40" width="70" height="22" rx="4" fill="rgba(254,196,34,0.08)" stroke="rgba(254,196,34,0.25)" stroke-width="1"/>
-                <text x="257" y="55" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(254,196,34,0.8)">API REST</text>
-              </g>
-
-              <!-- Nó orbital 2 (direita) -->
-              <g class="orbit-node orbit-node--2">
-                <circle cx="370" cy="210" r="7" fill="rgba(255,255,255,0.7)" stroke="rgba(255,255,255,0.15)" stroke-width="8"/>
-                <rect x="314" y="220" width="70" height="22" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                <text x="349" y="235" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.6)">DATABASE</text>
-              </g>
-
-              <!-- Nó orbital 3 (baixo) -->
-              <g class="orbit-node orbit-node--3">
-                <circle cx="210" cy="370" r="7" fill="rgba(254,196,34,0.9)" stroke="rgba(254,196,34,0.3)" stroke-width="8"/>
-                <rect x="222" y="360" width="68" height="22" rx="4" fill="rgba(254,196,34,0.08)" stroke="rgba(254,196,34,0.25)" stroke-width="1"/>
-                <text x="256" y="375" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(254,196,34,0.8)">DEPLOY</text>
-              </g>
-
-              <!-- Nó orbital 4 (esquerda) -->
-              <g class="orbit-node orbit-node--4">
-                <circle cx="50" cy="210" r="7" fill="rgba(255,255,255,0.7)" stroke="rgba(255,255,255,0.15)" stroke-width="8"/>
-                <rect x="60" y="200" width="56" height="22" rx="4" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                <text x="88" y="215" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.6)">CLOUD</text>
-              </g>
-
-              <!-- Satélites no anel 2 -->
-              <circle cx="316" cy="108" r="5" fill="rgba(254,196,34,0.6)" class="orbit-sat orbit-sat--1"/>
-              <circle cx="104" cy="316" r="5" fill="rgba(255,255,255,0.4)" class="orbit-sat orbit-sat--2"/>
-
-              <!-- Linhas conectoras dos nós ao centro (pontilhadas) -->
-              <line x1="210" y1="57" x2="210" y2="166" stroke="rgba(254,196,34,0.15)" stroke-width="1" stroke-dasharray="4 6"/>
-              <line x1="363" y1="210" x2="300" y2="210" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4 6"/>
-              <line x1="210" y1="363" x2="210" y2="254" stroke="rgba(254,196,34,0.15)" stroke-width="1" stroke-dasharray="4 6"/>
-              <line x1="57" y1="210" x2="120" y2="210" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4 6"/>
-
-              <!-- Arco de progresso decorativo -->
-              <circle cx="210" cy="210" r="190" stroke="rgba(254,196,34,0.35)" stroke-width="2"
-                stroke-dasharray="298 897" stroke-dashoffset="224"
-                stroke-linecap="round"
-                class="orbit-arc"/>
-
-            </svg>
-
-            <!-- Pulse glow centralizado -->
-            <div class="tech-orbit__pulse"></div>
-
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Seta de scroll suave para a próxima seção -->
-      <a href="#quem-somos" class="hero__scroll" aria-label="Rolar para baixo">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 9l6 6 6-6"/>
-        </svg>
-      </a>
-
-    </section>
-
-    <!-- =====================================================
-         QUEM SOMOS — apresentação institucional da empresa
-         ===================================================== -->
-    <section class="section quem-somos" id="quem-somos">
-      <div class="container quem-somos__grid">
-
-        <!-- Coluna esquerda: texto institucional -->
-        <div class="quem-somos__text reveal">
-          <span class="section__tag">Quem Somos</span>
-          <h2 class="section__title">Uma empresa movida por inovação e propósito</h2>
-          <p class="section__body">
-            A Softsy é uma empresa de tecnologia movida por inovação, estratégia e propósito.
-            Transformamos desafios em soluções digitais inteligentes, desenvolvendo sistemas
-            robustos e escaláveis para instituições de ensino, empresas privadas e órgãos públicos.
-          </p>
-          <p class="section__body">
-            Nossa equipe une expertise técnica a uma visão estratégica de negócios, entregando
-            tecnologia que realmente gera resultado — do planejamento à implementação.
-          </p>
-          <a href="#contato" class="btn btn--yellow">Fale com nossa equipe</a>
-        </div>
-
-        <!-- Coluna direita: visual abstrato com anéis e chips flutuantes -->
-        <div class="quem-somos__visual reveal reveal--right">
-          <div class="abstract-tech">
-
-            <!-- Anéis decorativos rotativos (animação CSS) -->
-            <div class="abstract-tech__ring abstract-tech__ring--1"></div>
-            <div class="abstract-tech__ring abstract-tech__ring--2"></div>
-            <div class="abstract-tech__ring abstract-tech__ring--3"></div>
-
-            <!-- Círculo central com ícone de estrela -->
-            <div class="abstract-tech__center">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FEC422" stroke-width="1.5">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-              </svg>
-            </div>
-
-            <!-- Chips flutuantes com palavras-chave da empresa -->
-            <!-- Cada chip tem posição e delay de animação diferentes -->
-            <div class="floating-chip floating-chip--1">Inovação</div>
-            <div class="floating-chip floating-chip--2">Estratégia</div>
-            <div class="floating-chip floating-chip--4">Tecnologia</div>
-            <div class="floating-chip floating-chip--5">Performance</div>
-            <div class="floating-chip floating-chip--6">Segurança</div>
-            <div class="floating-chip floating-chip--7">Agilidade</div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- =====================================================
-         QUEM AJUDAMOS — públicos atendidos pela Softsy
-         ===================================================== -->
-    <section class="section quem-ajudamos" id="quem-ajudamos">
-      <div class="container">
-
-        <!-- Cabeçalho centralizado da seção -->
-        <div class="section__header reveal">
-          <span class="section__tag">Quem Ajudamos</span>
-          <h2 class="section__title">Soluções para quem mais precisa de tecnologia</h2>
-        </div>
-        <div class="cards-grid">
-
-          <!-- Card 1: Educação -->
-          <div class="card reveal">
-            <h3 class="card__title">
-              <span class="card__tag-sym">&lt;</span> Educação<span class="card__tag-sym">/&gt;</span>
-            </h3>
-            <p class="card__text">
-              Sistemas de gestão educacional completos: matrículas, frequência,
-              notas, comunicação entre escola e família, e muito mais.
-            </p>
-          </div>
-
-          <!-- Card 2: Empresas Privadas -->
-          <div class="card reveal reveal--delay-1">
-            <h3 class="card__title">
-              <span class="card__tag-sym">&lt;</span> Empresas Privadas<span class="card__tag-sym">/&gt;</span>
-            </h3>
-            <p class="card__text">
-              Soluções para otimização e automação de processos internos,
-              reduzindo custos e aumentando a eficiência operacional.
-            </p>
-          </div>
-
-          <!-- Card 3: Órgãos Públicos -->
-          <div class="card reveal reveal--delay-2">
-            <h3 class="card__title">
-              <span class="card__tag-sym">&lt;</span> Órgãos Públicos<span class="card__tag-sym">/&gt;</span>
-            </h3>
-            <p class="card__text">
-              Sistemas administrativos modernos para digitalização de processos,
-              transparência e eficiência na gestão pública.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- =====================================================
-         SOLUÇÕES — produtos/serviços oferecidos
-         ===================================================== -->
-    <section class="section solucoes" id="solucoes">
-      <div class="container">
-
-        <div class="section__header reveal">
-          <span class="section__tag">Soluções</span>
-          <h2 class="section__title">O que entregamos para o seu negócio</h2>
-        </div>
-
-        <!-- Grid 3 colunas × 2 linhas = 6 soluções -->
-        <div class="solutions-grid">
-
-          <!-- Solução 1: Sistemas Personalizados -->
-          <div class="solution-item reveal">
-            <div class="solution-item__icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                <path d="M8 21h8M12 17v4"/>
-              </svg>
-            </div>
-            <div>
-              <h4 class="solution-item__title">Sistemas Personalizados</h4>
-              <p class="solution-item__text">Desenvolvemos do zero para o seu contexto específico.</p>
-            </div>
-          </div>
-
-          <!-- Solução 2: Automação de Processos -->
-          <div class="solution-item reveal reveal--delay-1">
-            <div class="solution-item__icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <polyline points="16 3 21 3 21 8"/>
-                <line x1="4" y1="20" x2="21" y2="3"/>
-                <polyline points="21 16 21 21 16 21"/>
-                <line x1="15" y1="15" x2="21" y2="21"/>
-              </svg>
-            </div>
-            <div>
-              <h4 class="solution-item__title">Automação de Processos</h4>
-              <p class="solution-item__text">Elimine tarefas manuais repetitivas com inteligência.</p>
-            </div>
-          </div>
-
-          <!-- Solução 3: Gestão Administrativa -->
-          <div class="solution-item reveal reveal--delay-2">
-            <div class="solution-item__icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/>
-                <path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
-                <path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/>
-                <path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/>
-                <path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/>
-                <path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/>
-                <path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/>
-                <path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/>
-              </svg>
-            </div>
-            <div>
-              <h4 class="solution-item__title">Gestão Administrativa</h4>
-              <p class="solution-item__text">Controle total de fluxos, pessoas e recursos.</p>
-            </div>
-          </div>
-
-          <!-- Solução 4: Relatórios Estratégicos -->
-          <div class="solution-item reveal">
-            <div class="solution-item__icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <line x1="18" y1="20" x2="18" y2="10"/>
-                <line x1="12" y1="20" x2="12" y2="4"/>
-                <line x1="6"  y1="20" x2="6"  y2="14"/>
-              </svg>
-            </div>
-            <div>
-              <h4 class="solution-item__title">Relatórios Estratégicos</h4>
-              <p class="solution-item__text">Dados transformados em decisões inteligentes.</p>
-            </div>
-          </div>
-
-          <!-- Solução 5: Integrações Inteligentes -->
-          <div class="solution-item reveal reveal--delay-1">
-            <div class="solution-item__icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="18" cy="18" r="3"/>
-                <circle cx="6"  cy="6"  r="3"/>
-                <path d="M6 21V9a9 9 0 0 0 9 9"/>
-              </svg>
-            </div>
-            <div>
-              <h4 class="solution-item__title">Integrações Inteligentes</h4>
-              <p class="solution-item__text">Conectamos sistemas para um fluxo unificado.</p>
-            </div>
-          </div>
-
-          <!-- ✅ Solução 6 — nova: Suporte e Consultoria -->
-          <div class="solution-item reveal reveal--delay-2">
-            <div class="solution-item__icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-            </div>
-            <div>
-              <h4 class="solution-item__title">Suporte e Consultoria</h4>
-              <p class="solution-item__text">Acompanhamento contínuo e estratégico após a entrega.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    
-    <section class="section diferenciais" id="diferenciais">
-      <div class="container">
-
-        <div class="section__header reveal">
-          <span class="section__tag">Diferenciais</span>
-          <h2 class="section__title">Por que escolher a Softsy?</h2>
-        </div>
-
-        <!-- Grid 3 colunas × 2 linhas = 6 itens — alinhamento perfeito no desktop -->
-        <div class="diferenciais-grid">
-          <div class="diferencial reveal">
-            <span class="diferencial__icon">✔</span>
-            <span class="diferencial__text">Tecnologia escalável</span>
-          </div>
-          <div class="diferencial reveal">
-            <span class="diferencial__icon">✔</span>
-            <span class="diferencial__text">Atendimento estratégico</span>
-          </div>
-          <div class="diferencial reveal">
-            <span class="diferencial__icon">✔</span>
-            <span class="diferencial__text">Desenvolvimento personalizado</span>
-          </div>
-          <div class="diferencial reveal">
-            <span class="diferencial__icon">✔</span>
-            <span class="diferencial__text">Foco em performance</span>
-          </div>
-          <div class="diferencial reveal">
-            <span class="diferencial__icon">✔</span>
-            <span class="diferencial__text">Parceria de longo prazo</span>
-          </div>
-          <!-- ✅ Diferencial 6 — novo -->
-          <div class="diferencial reveal">
-            <span class="diferencial__icon">✔</span>
-            <span class="diferencial__text">Suporte pós-entrega</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- =====================================================
-         CONTATO — formulário e informações de contato
-         ===================================================== -->
-    <section class="section contato" id="contato">
-      <div class="container contato__grid">
-
-        <!-- Coluna esquerda: texto e links de contato direto -->
-        <div class="contato__info reveal">
-          <span class="section__tag section__tag--light">Contato</span>
-          <h2 class="section__title section__title--light">Vamos conversar sobre o seu projeto?</h2>
-          <p class="section__body section__body--light">
-            Entre em contato e descubra como a Softsy pode transformar
-            sua operação com tecnologia de alto desempenho.
-          </p>
-
-          <!-- Endereço -->
-          <div class="contato__endereco">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;margin-top:3px">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-            <span>Av. Trindade, 254 · Bethaville I<br>Barueri – SP, 06404-326</span>
-          </div>
-
-          <!-- Mapa embutido -->
-          <div class="contato__mapa">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.902!2d-46.8706!3d-23.5063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf03d18a0804e6f%3A0x741b69de4abf82e4!2sAv.%20Trindade%2C%20254%20-%20Bethaville%20I%2C%20Barueri%20-%20SP%2C%2006404-326!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
-              width="100%"
-              height="220"
-              style="border:0;border-radius:12px"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Localização Softsy">
-            </iframe>
-          </div>
-        </div>
-
-        <!-- Coluna direita: formulário de contato -->
-        <!-- novalidate: desativa validação nativa do browser (usamos JS customizado) -->
-        <form class="contato__form reveal reveal--right" id="contactForm" novalidate>
-
-          <!-- Campo: Nome obrigatório -->
-          <div class="form-group">
-            <label for="nome">Nome *</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
-          </div>
-
-          <!-- Campo: Empresa opcional -->
-          <div class="form-group">
-            <label for="empresa">Empresa</label>
-            <input type="text" id="empresa" name="empresa" placeholder="Nome da sua empresa" />
-          </div>
-
-          <!-- Campo: E-mail obrigatório -->
-          <div class="form-group">
-            <label for="email">E-mail *</label>
-            <input type="email" id="email" name="email" placeholder="softsy@gmail.com" required />
-          </div>
-
-          <!-- Campo: Mensagem obrigatória -->
-          <div class="form-group">
-            <label for="mensagem">Mensagem *</label>
-            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Descreva seu projeto ou necessidade..." required></textarea>
-          </div>
-
-          <!-- Botão de envio -->
-          <button type="submit" class="btn btn--yellow btn--full">
-            Enviar mensagem
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="22" y1="2" x2="11" y2="13"/>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-            </svg>
-          </button>
-
-          <!-- Mensagem de sucesso — oculta por padrão, exibida via JS -->
-          <!-- aria-live: anuncia para leitores de tela quando aparecer -->
-          <div class="form-success" id="formSuccess" aria-live="polite">
-            ✅ Mensagem enviada! Entraremos em contato em breve.
-          </div>
-
-        </form>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- =====================================================
-       FOOTER — rodapé com logo, copyright e links rápidos
-       ===================================================== -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      
-      <a href="#inicio" class="nav__logo">
-        <div class="logo">
-          <img src="img/logo.png" alt="Softsy" class="logo__imgf" /> 
-        </div>
-      </a>
-      <!-- Badge do produto ao lado da logo -->
-      <a href="https://dellamuraissa.github.io/Educsy/" class="softsy-badge softsy-badge--footer" target="_blank" rel="noopener noreferrer">produto <span>Educsy</span></a>
-      <p class="footer__copy">© 2026 Softsy. Todos os direitos reservados.</p>
-      <nav class="footer__links">
-        <a href="#inicio">Início</a>
-        <a href="#solucoes">Soluções</a>
-        <a href="#contato">Contato</a>
-      </nav>
+<nav class="nav" id="nav">
+  <div class="w nav-inner">
+    <a href="#inicio" class="nav-logo"><img src="img/educsy.png" alt="Educsy"/></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#solucoes">Solucoes</a></li>
+      <li><a href="#como-funciona">Como Funciona</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <div class="nav-right">
+      <span class="nav-badge" > por <span>Softsy</span></span>></a>
+      <a href="#contato" class="btn btn-dark btn-sm">Solicitar Demo</a>
     </div>
-  </footer>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
 
+<div class="mobile-drawer" id="drawer">
+  <a href="#inicio">Inicio</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#solucoes">Solucoes</a>
+  <a href="#como-funciona">Como Funciona</a>
+  <a href="#contato">Contato</a>
+  <a href="#contato" class="btn btn-y">Solicitar demonstracao</a>
+</div>
 
-  <a href="https://wa.me/55SEUNUMEROAQUI"
-     target="_blank"
-     rel="noopener"
-     class="whatsapp-float"
-     aria-label="Falar no WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.509 5.823L0 24l6.335-1.493A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.491-5.23-1.349l-.374-.222-3.882.915.977-3.775-.243-.389A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-    </svg>
-  </a>
+<main>
 
-  <!-- Script principal carregado no final para não bloquear o HTML -->
-  <script src="script.js"></script>
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-l">
+    <div class="hero-eyebrow"><i></i>Plataforma educacional inteligente</div>
+    <h1 class="hero-h1">Gestao escolar<br><em>sem complicacao,</em><br>com resultado.</h1>
+    <p class="hero-sub">A Educsy centraliza o academico, financeiro e a comunicacao da sua instituicao de ensino - tudo em um painel intuitivo, acessivel de qualquer lugar.</p>
+    <div class="hero-btns">
+      <a href="#contato" class="btn btn-y">Solicitar demonstracao</a>
+      <a href="https://wa.me/55SEUNUMEROAQUI" target="_blank" rel="noopener" class="btn btn-ghost-light">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.509 5.823L0 24l6.335-1.493A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.491-5.23-1.349l-.374-.222-3.882.915.977-3.775-.243-.389A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Falar com especialista
+      </a>
+    </div>
+    <div class="hero-social">
+      <div class="hs-avs">
+        <div class="hs-av">CM</div><div class="hs-av">RS</div><div class="hs-av">AF</div><div class="hs-av">BP</div>
+      </div>
+      <p class="hs-text"><strong>+50 instituicoes</strong> ja utilizam<br>a Educsy no Brasil</p>
+    </div>
+  </div>
+  <!-- Painel do administrador removido -->
+</section>
+
+<!-- SOBRE -->
+<section class="sec" id="sobre">
+  <div class="w">
+    <div class="reveal">
+      <div class="sec-label">Sobre a Educsy</div>
+      <h2 class="sec-h">Um produto Softsy feito<br>para transformar a educacao</h2>
+      <p class="sec-p">A Educsy carrega a excelencia tecnica da Softsy aplicada a gestao educacional - desenvolvida para eliminar a burocracia das instituicoes de ensino e devolver tempo para o que importa: o aprendizado.</p>
+    </div>
+    <div class="bento">
+      <div class="bc bc-wide reveal d1">
+        <div class="bc-chip">Nossa missao</div>
+        <div class="bc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="bc-title">Tecnologia que serve a educacao</div>
+        <p class="bc-text">Desenvolvemos cada funcionalidade pensando em gestores, professores e alunos reais - nao em planilhas. Do cadastro do primeiro aluno a geracao de relatorios avancados de desempenho, cada detalhe foi construido para o cotidiano da educacao brasileira.</p>
+      </div>
+      <div class="bc bc-dark reveal d2">
+        <div class="bc-chip bc-chip-white">Experiencia</div>
+        <div class="bc-num bc-num-white">12<sup>+</sup></div>
+        <div class="bc-lbl bc-lbl-muted">Anos da Softsy<br>em tecnologia</div>
+      </div>
+      <div class="bc reveal d1">
+        <div class="bc-num">98<sup>%</sup></div>
+        <div class="bc-lbl">satisfacao<br>dos clientes</div>
+      </div>
+      <div class="bc bc-gold reveal d2">
+        <div class="bc-num">50<sup>+</sup></div>
+        <div class="bc-lbl">Instituicoes atendidas<br>no Brasil</div>
+      </div>
+      <div class="bc reveal d3">
+        <div class="bc-num">24<sup>h</sup></div>
+        <div class="bc-lbl">Suporte especializado<br>disponivel</div>
+      </div>
+     
+    </div>
+  </div>
+</section>
+
+<!-- SOLUCOES -->
+<section class="sec sec-alt" id="solucoes">
+  <div class="w">
+    <div class="sec-center reveal">
+      <div class="sec-label">Nossas Solucoes</div>
+      <h2 class="sec-h">Tudo que sua instituicao precisa</h2>
+      <p class="sec-p">Um ecossistema completo de ferramentas integradas para cada aspecto da gestao educacional moderna.</p>
+    </div>
+    <div class="sol-grid">
+      <div class="sol-card reveal">
+        <div class="sol-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="sol-title">Gestao Academica</div>
+        <p class="sol-body">Matriculas, turmas, notas, frequencia e historico escolar centralizados em um painel completo e intuitivo.</p>
+        <div class="sol-more">Saiba mais &rarr;</div>
+      </div>
+      <div class="sol-card reveal d1">
+        <div class="sol-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <div class="sol-title">Controle Financeiro</div>
+        <p class="sol-body">Boletos automaticos, controle de inadimplencia, mensalidades e relatorios financeiros sem complicacao.</p>
+        <div class="sol-more">Saiba mais &rarr;</div>
+      </div>
+      <div class="sol-card reveal d2">
+        <div class="sol-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="sol-title">Area do Aluno</div>
+        <p class="sol-body">Portal exclusivo para alunos acessarem notas, boletos, materiais didaticos e comunicados em tempo real.</p>
+        <div class="sol-more">Saiba mais &rarr;</div>
+      </div>
+      <div class="sol-card reveal">
+        <div class="sol-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+        <div class="sol-title">Painel Administrativo</div>
+        <p class="sol-body">Visao 360 da instituicao com dashboards personalizaveis, alertas inteligentes e controle de permissoes.</p>
+        <div class="sol-more">Saiba mais &rarr;</div>
+      </div>
+      <div class="sol-card reveal d1">
+        <div class="sol-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="sol-title">Relatorios Inteligentes</div>
+        <p class="sol-body">Analises automaticas de desempenho, evasao e financas exportaveis em PDF e Excel com um clique.</p>
+        <div class="sol-more">Saiba mais &rarr;</div>
+      </div>
+      <div class="sol-card reveal d2">
+        <div class="sol-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="sol-title">Comunicacao Integrada</div>
+        <p class="sol-body">Mensagens, notificacoes push, e-mail e SMS para alunos, pais e responsaveis gerenciados em um so lugar.</p>
+        <div class="sol-more">Saiba mais &rarr;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="sec sec-ink" id="diferenciais">
+  <div class="w">
+    <div class="sec-center reveal">
+      <div class="sec-label sec-label-light">Diferenciais</div>
+      <h2 class="sec-h sec-h-light">Por que escolher a Educsy?</h2>
+      <p class="sec-p sec-p-light">Cada detalhe foi pensado para maximizar a eficiencia e elevar a experiencia de toda a instituicao.</p>
+    </div>
+    <div class="dif-grid">
+      <div class="dif-item reveal"><div class="dif-n">01</div><div><div class="dif-h">Plataforma 100% Online</div><p class="dif-p">Acesse de qualquer dispositivo, em qualquer lugar, sem instalacoes ou configuracoes complexas.</p></div></div>
+      <div class="dif-item reveal d1"><div class="dif-n">02</div><div><div class="dif-h">Interface Intuitiva</div><p class="dif-p">Pensada para ser simples. Qualquer colaborador aprende em minutos, sem treinamentos longos.</p></div></div>
+      <div class="dif-item reveal"><div class="dif-n">03</div><div><div class="dif-h">Seguranca e LGPD</div><p class="dif-p">Criptografia de ponta a ponta, backups automaticos e total conformidade com a legislacao vigente.</p></div></div>
+      <div class="dif-item reveal d1"><div class="dif-n">04</div><div><div class="dif-h">Suporte Especializado</div><p class="dif-p">Time dedicado de especialistas em educacao e tecnologia orientando cada etapa da sua jornada.</p></div></div>
+      <div class="dif-item reveal"><div class="dif-n">05</div><div><div class="dif-h">Alta Performance</div><p class="dif-p">Infraestrutura em nuvem escalavel com 99,9% de disponibilidade garantida em contrato.</p></div></div>
+      <div class="dif-item reveal d1"><div class="dif-n">06</div><div><div class="dif-h">Atualizacoes Constantes</div><p class="dif-p">Novas funcionalidades entregues automaticamente, sem custo adicional e sem interrupcao do sistema.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="sec sec-alt" id="como-funciona">
+  <div class="w">
+    <div class="reveal">
+      <div class="sec-label">Como Funciona</div>
+      <h2 class="sec-h">Do cadastro a gestao completa</h2>
+      <p class="sec-p">Comecar e simples, rapido e acompanhado pela nossa equipe do primeiro ao ultimo passo.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-visual reveal d1">
+        <div class="tl-visual-bar">
+          <div class="d-dots"><div class="d-dot d-r"></div><div class="d-dot d-y"></div><div class="d-dot d-g"></div></div>
+          <span>Progresso de implantacao</span>
+        </div>
+        <div class="tl-visual-body">
+          <div class="tv-card glow">
+            <div class="tv-card-h">Configuracao geral</div>
+            <div class="tv-bar-row">
+              <div class="tv-bar-wrap"><span class="tv-bar-lbl">Dados</span><div class="tv-bar-bg"><div class="tv-bar-fill" style="width:92%"></div></div></div>
+              <div class="tv-bar-wrap"><span class="tv-bar-lbl">Turmas</span><div class="tv-bar-bg"><div class="tv-bar-fill slow" style="width:78%"></div></div></div>
+              <div class="tv-bar-wrap"><span class="tv-bar-lbl">Financas</span><div class="tv-bar-bg"><div class="tv-bar-fill slower" style="width:65%"></div></div></div>
+            </div>
+          </div>
+          <div class="tv-card">
+            <div class="tv-card-h">Alunos importados</div>
+            <div class="tv-bar-row">
+              <div class="tv-bar-wrap"><span class="tv-bar-lbl">Ativos</span><div class="tv-bar-bg"><div class="tv-bar-fill" style="width:88%"></div></div></div>
+              <div class="tv-bar-wrap"><span class="tv-bar-lbl">Docs</span><div class="tv-bar-bg"><div class="tv-bar-fill slow" style="width:54%"></div></div></div>
+            </div>
+          </div>
+          <div class="tv-card">
+            <div class="tv-card-h">Integracao financeira</div>
+            <div class="tv-bar-row">
+              <div class="tv-bar-wrap"><span class="tv-bar-lbl">Boletos</span><div class="tv-bar-bg"><div class="tv-bar-fill" style="width:100%"></div></div></div>
+              <div class="tv-bar-wrap"><span class="tv-bar-lbl">Gateway</span><div class="tv-bar-bg"><div class="tv-bar-fill slow" style="width:70%"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="step-num">01</div><div class="step-body"><div class="step-h">Cadastro da Instituicao</div><p class="step-p">Configure escola, cursos e estrutura em minutos com nosso wizard guiado e intuitivo. Nossa equipe acompanha todo o processo.</p></div></div>
+        <div class="step reveal d1"><div class="step-num">02</div><div class="step-body"><div class="step-h">Configuracao Personalizada</div><p class="step-p">Adapte turmas, grades curriculares, regras financeiras e fluxos de comunicacao a realidade da sua instituicao.</p></div></div>
+        <div class="step reveal d2"><div class="step-num">03</div><div class="step-body"><div class="step-h">Gestao Completa</div><p class="step-p">Centralize alunos, professores, financas e comunicacao em um unico ambiente integrado e acessivel de qualquer dispositivo.</p></div></div>
+        <div class="step reveal d3"><div class="step-num">04</div><div class="step-body"><div class="step-h">Acompanhamento e Insights</div><p class="step-p">Monitore indicadores em tempo real, receba alertas automaticos e tome decisoes estrategicas baseadas em dados reais.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICAS -->
+<section class="met-strip" id="resultados">
+  <div class="w">
+    <div class="met-inner">
+      <div class="met-cell reveal"><div class="met-ico">&#128218;</div><div class="met-n">+500</div><div class="met-l">Alunos gerenciados diariamente</div></div>
+      <div class="met-cell reveal d1"><div class="met-ico">&#11088;</div><div class="met-n">95%</div><div class="met-l">Satisfacao dos clientes</div></div>
+      <div class="met-cell reveal d2"><div class="met-ico">&#128274;</div><div class="met-n">99,9%</div><div class="met-l">Disponibilidade garantida</div></div>
+      <div class="met-cell reveal d3"><div class="met-ico">&#127983;</div><div class="met-n">+50</div><div class="met-l">Instituicoes atendidas</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="sec" id="depoimentos">
+  <div class="w">
+    <div class="sec-center reveal">
+      <div class="sec-label">Depoimentos</div>
+      <h2 class="sec-h">O que dizem nossas instituicoes</h2>
+    </div>
+    <div class="depo-grid">
+      <div class="depo-card reveal">
+        <div class="depo-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="depo-quote-mark">"</div>
+        <p class="depo-txt">A Educsy transformou completamente nossa gestao. O que levava horas e resolvido em minutos. A integracao financeira e academica e <strong>simplesmente perfeita</strong>.</p>
+        <div class="depo-div"></div>
+        <div class="depo-author"><div class="depo-av">CM</div><div><div class="depo-name">Carla Mendonca</div><div class="depo-role">Diretora - Colegio Novo Horizonte</div></div></div>
+      </div>
+      <div class="depo-card reveal d1">
+        <div class="depo-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="depo-quote-mark">"</div>
+        <p class="depo-txt">Finalmente um sistema que entende a realidade brasileira. O suporte e excepcional e as atualizacoes mostram que a equipe <strong>esta sempre evoluindo</strong> com a gente.</p>
+        <div class="depo-div"></div>
+        <div class="depo-author"><div class="depo-av">RS</div><div><div class="depo-name">Ricardo Santos</div><div class="depo-role">Coord. Financeiro - Instituto Futuro</div></div></div>
+      </div>
+      <div class="depo-card reveal d2">
+        <div class="depo-stars"><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span></div>
+        <div class="depo-quote-mark">"</div>
+        <p class="depo-txt">Reduzimos em <strong>70% o tempo</strong> com tarefas administrativas. Os relatorios nos ajudam a identificar rapidamente alunos em risco de evasao.</p>
+        <div class="depo-div"></div>
+        <div class="depo-author"><div class="depo-av">AF</div><div><div class="depo-name">Ana Ferreira</div><div class="depo-role">Gestora Geral - Escola Sigma</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-sec">
+  <div class="w reveal">
+    <div class="sec-label sec-label-light" style="justify-content:center">Vamos comecar</div>
+    <h2 class="sec-h sec-h-light" style="margin-inline:auto;max-width:560px">Pronto para modernizar sua instituicao?</h2>
+    <p class="sec-p sec-p-light" style="margin-inline:auto;text-align:center">Junte-se as instituicoes que ja transformaram sua gestao com a Educsy. Solicite uma demonstracao gratuita e veja a plataforma em acao.</p>
+    <div class="cta-btns">
+      <a href="#contato" class="btn btn-y">Solicitar demonstracao</a>
+      <a href="https://wa.me/55SEUNUMEROAQUI" target="_blank" rel="noopener" class="btn btn-ghost-light">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.509 5.823L0 24l6.335-1.493A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.491-5.23-1.349l-.374-.222-3.882.915.977-3.775-.243-.389A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Falar com especialista
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="sec" id="contato">
+  <div class="w">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="sec-label">Contato</div>
+        <h2 class="sec-h">Vamos conversar sobre sua instituicao?</h2>
+        <p class="sec-p">Entre em contato e descubra como a Educsy pode transformar a gestao da sua escola com tecnologia de alto desempenho.</p>
+        <div class="contact-addr">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Av. Trindade, 254 - Bethaville I<br>Barueri - SP, 06404-326</span>
+        </div>
+        <div class="contact-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.902!2d-46.8706!3d-23.5063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf03d18a0804e6f%3A0x741b69de4abf82e4!2sAv.%20Trindade%2C%20254%20-%20Bethaville%20I%2C%20Barueri%20-%20SP%2C%2006404-326!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
+            width="100%" height="200" style="border:0;border-radius:12px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Educsy"></iframe>
+        </div>
+      </div>
+      <div class="form-card reveal-right">
+        <div class="form-head">Solicite uma demonstracao gratuita</div>
+        <form id="contactForm" novalidate>
+          <div class="fg"><label for="nome">Nome *</label><input type="text" id="nome" name="nome" placeholder="Seu nome completo" required/></div>
+          <div class="fg"><label for="inst">Instituicao</label><input type="text" id="inst" name="inst" placeholder="Nome da sua escola ou curso"/></div>
+          <div class="fg"><label for="email">E-mail *</label><input type="email" id="email" name="email" placeholder="contato@suaescola.com.br" required/></div>
+          <div class="fg"><label for="msg">Mensagem *</label><textarea id="msg" name="msg" rows="4" placeholder="Conte sobre sua instituicao..." required></textarea></div>
+          <button type="submit" class="form-submit">
+            Enviar mensagem
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+          <div class="form-ok" id="formOk" aria-live="polite">Mensagem enviada! Entraremos em contato em breve.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="w">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="img/logo.png" alt="Educsy"/>
+        <p>Plataforma completa de gestao educacional para escolas, faculdades e cursos livres.</p>
+        <a href="https://dellamuraissa.github.io/Softsy/" class="softsy-badge" target="_blank" rel="noopener">produto <span>Softsy</span></a>
+      </div>
+      <div class="foot-col">
+        <h5>Plataforma</h5>
+        <ul><li><a href="#">Gestao Academica</a></li><li><a href="#">Controle Financeiro</a></li><li><a href="#">Area do Aluno</a></li><li><a href="#">Relatorios</a></li><li><a href="#">Comunicacao</a></li></ul>
+      </div>
+      <div class="foot-col">
+        <h5>Empresa</h5>
+        <ul><li><a href="#">Sobre a Educsy</a></li><li><a href="#">Blog</a></li><li><a href="#">Softsy</a></li><li><a href="#">Carreiras</a></li></ul>
+      </div>
+      <div class="foot-col">
+        <h5>Suporte</h5>
+        <ul><li><a href="#">contato@educsy.com.br</a></li><li><a href="#">(11) 9 9999-9999</a></li><li><a href="#">Central de Ajuda</a></li><li><a href="#">Privacidade / LGPD</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2025 Educsy. Todos os direitos reservados.</span>
+      <span class="footer-by">Um produto <a href="#">Softsy</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/55SEUNUMEROAQUI" target="_blank" rel="noopener" class="wa" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.099 1.509 5.823L0 24l6.335-1.493A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.898 0-3.68-.491-5.23-1.349l-.374-.222-3.882.915.977-3.775-.243-.389A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script>
+(function(){
+  'use strict';
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+
+  const burger=document.getElementById('burger');
+  const drawer=document.getElementById('drawer');
+  burger.addEventListener('click',()=>{
+    const o=drawer.classList.toggle('open');
+    burger.classList.toggle('open',o);
+    document.body.style.overflow=o?'hidden':'';
+  });
+  drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    drawer.classList.remove('open');burger.classList.remove('open');document.body.style.overflow='';
+  }));
+  document.addEventListener('click',e=>{
+    if(!drawer.contains(e.target)&&!burger.contains(e.target)){
+      drawer.classList.remove('open');burger.classList.remove('open');document.body.style.overflow='';
+    }
+  });
+
+  const secs=document.querySelectorAll('section[id]');
+  function setActive(){
+    const y=scrollY+100;
+    secs.forEach(s=>{
+      const a=document.querySelector('.nav-links a[href="#'+s.id+'"]');
+      if(a)a.classList.toggle('on',y>=s.offsetTop&&y<s.offsetTop+s.offsetHeight);
+    });
+  }
+  window.addEventListener('scroll',setActive,{passive:true});
+  setActive();
+
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(!t)return;
+      e.preventDefault();
+      const navH=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav'))||72;
+      window.scrollTo({top:t.getBoundingClientRect().top+scrollY-navH,behavior:'smooth'});
+    });
+  });
+
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal,.reveal-right').forEach(el=>obs.observe(el));
+
+  const form=document.getElementById('contactForm');
+  const ok=document.getElementById('formOk');
+  if(form){
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const nome=document.getElementById('nome');
+      const email=document.getElementById('email');
+      const msg=document.getElementById('msg');
+      let valid=true;
+      [nome,email,msg].forEach(f=>{
+        f.style.borderColor='';
+        if(!f.value.trim()){f.style.borderColor='#FC8181';valid=false;}
+      });
+      if(email.value&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){email.style.borderColor='#FC8181';valid=false;}
+      if(!valid){
+        form.querySelectorAll('[style*="FC8181"]').forEach(f=>
+          f.animate([{transform:'translateX(0)'},{transform:'translateX(-5px)'},{transform:'translateX(5px)'},{transform:'translateX(0)'}],{duration:260,easing:'ease-in-out'})
+        );
+        return;
+      }
+      const btn=form.querySelector('.form-submit');
+      const orig=btn.innerHTML;
+      btn.disabled=true;btn.innerHTML='Enviando...';
+      setTimeout(()=>{btn.disabled=false;btn.innerHTML=orig;form.reset();ok.classList.add('on');setTimeout(()=>ok.classList.remove('on'),5000);},1800);
+    });
+  }
+})();
+</script>
 </body>
 </html>
