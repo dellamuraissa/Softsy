@@ -272,9 +272,25 @@ a  { text-decoration: none; color: inherit; }
   font-weight: 500;
   padding: 8px 14px;
   border-radius: var(--radius);
-  transition: var(--transition);
+  transition: color var(--transition);
+  position: relative;
 }
-.nav__link:hover { color: var(--white); background: rgba(255,255,255,.07); }
+
+/* Traço amarelo embaixo — expande do centro para os lados no hover */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--yellow);
+  border-radius: 2px;
+  transition: width .3s ease;
+}
+.nav__link:hover { color: var(--white); }
+.nav__link:hover::after { width: calc(100% - 28px); }
 
 /* Botão CTA dentro do menu */
 .nav__cta { padding: 9px 22px; font-size: .88rem; }
