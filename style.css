@@ -440,8 +440,8 @@ a  { text-decoration: none; color: inherit; }
    ========================================================== */
 .tech-orbit {
   position: relative;
-  width: 720px;
-  height: 720px;
+  width: 640px;
+  height: 640px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1058,7 +1058,7 @@ a  { text-decoration: none; color: inherit; }
 /* ── Desktop médio (≤1280px) ─────────────────────────────── */
 @media (max-width: 1280px) {
   .hero__content  { gap: 48px; }
-  .tech-orbit     { width: 580px; height: 580px; }
+  .tech-orbit     { width: 500px; height: 500px; }
   .contato__grid  { gap: 56px; }
 }
 
@@ -1069,7 +1069,7 @@ a  { text-decoration: none; color: inherit; }
   .nav__link      { padding: 8px 10px; font-size: .85rem; }
 
   .hero__content  { gap: 36px; padding: 60px 24px; }
-  .tech-orbit     { width: 440px; height: 440px; }
+  .tech-orbit     { width: 380px; height: 380px; }
 
   .solutions-grid    { grid-template-columns: repeat(2, 1fr); }
   .diferenciais-grid { grid-template-columns: repeat(2, 1fr); }
