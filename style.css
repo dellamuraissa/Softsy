@@ -440,8 +440,8 @@ a  { text-decoration: none; color: inherit; }
    ========================================================== */
 .tech-orbit {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 720px;
+  height: 720px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -628,60 +628,140 @@ a  { text-decoration: none; color: inherit; }
 
 
 /* ==========================================================
-   QUEM AJUDAMOS
+   CLIENTES (antigo quem-ajudamos)
    ========================================================== */
-.quem-ajudamos { background: var(--gray-50); }
-.quem-ajudamos .container { max-width: 1400px; }
+.clientes { background: var(--gray-50); overflow: hidden; }
 
-/* Grid de 3 cards iguais */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  width: 100%;
+.section__subtitle {
+  font-size: 1rem;
+  color: var(--text-body);
+  max-width: 560px;
+  margin: -12px auto 0;
+  text-align: center;
 }
 
-.card {
-  width: 100%;
+/* --- Trilho de logos com scroll infinito --- */
+.clientes__track-wrapper {
+  position: relative;
+  overflow: hidden;
+  margin: 48px -24px 0;
+  padding: 0 0 4px;
+}
+
+/* Gradientes nas bordas para fade suave */
+.clientes__track-wrapper::before,
+.clientes__track-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.clientes__track-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--gray-50), transparent);
+}
+.clientes__track-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--gray-50), transparent);
+}
+
+.clientes__track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: max-content;
+  animation: logoScroll 28s linear infinite;
+}
+.clientes__track:hover { animation-play-state: paused; }
+
+@keyframes logoScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Cada logo: caixa branca com sombra suave */
+.cliente-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--white);
   border: 1px solid var(--gray-100);
   border-radius: 12px;
-  padding: 36px 28px;
-  transition: var(--transition);
+  padding: 20px 36px;
+  margin: 8px 12px;
   box-shadow: var(--shadow-sm);
-  text-align: center; /* Alinha título e texto ao centro */
+  height: 88px;
+  min-width: 180px;
+  transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
 }
-/* Hover: eleva, borda amarela e fundo levemente dourado */
-.card:hover {
-  transform: translateY(-6px);
-  border-color: var(--yellow-2);
-  background: #FFFDF4;
-  box-shadow: 0 12px 40px rgba(254,196,34,.15);
+.cliente-logo:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--yellow);
+  transform: translateY(-3px);
+}
+.cliente-logo img {
+  max-height: 46px;
+  max-width: 140px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(30%);
+  opacity: 0.85;
+  transition: filter var(--transition), opacity var(--transition);
+}
+.cliente-logo:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
-.card__icon {
-  width: 56px; height: 56px;
+/* --- Segmentos atendidos --- */
+.clientes__segmentos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 48px;
+  padding: 24px 32px;
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.segmento {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.segmento__icon {
+  width: 34px; height: 34px;
   background: rgba(3,30,59,.06);
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
   color: var(--blue);
-  margin: 0 auto 20px; /* Centraliza o ícone */
-  transition: var(--transition);
 }
-/* Ícone muda para fundo amarelo no hover do card */
-.card:hover .card__icon { background: var(--yellow); color: var(--blue); }
 
-
-.card__title { font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; line-height: 1.4; }
-
-.card__tag-sym {
-  color: var(--yellow);                  
-  font-family: 'Courier New', monospace; 
-  font-weight: 700;
-  font-size: .88em;
-  letter-spacing: -.01em;
+.segmento__divider {
+  width: 1px;
+  height: 28px;
+  background: var(--gray-300);
+  margin: 0 8px;
 }
-.card__text  { font-size: .9rem; color: var(--text-body); line-height: 1.7; }
+
+@media (max-width: 600px) {
+  .segmento__divider { display: none; }
+  .clientes__segmentos { gap: 16px; }
+}
 
 
 /* ==========================================================
@@ -784,15 +864,29 @@ a  { text-decoration: none; color: inherit; }
 }
 
 /* Duas colunas: info | formulário */
-.contato__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; position: relative; z-index: 1; }
+.contato__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: stretch; position: relative; z-index: 1; }
 
 .contato__links { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+
+.contato__telefone {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  color: rgba(255,255,255,.85);
+  font-size: .95rem;
+  font-weight: 600;
+  transition: var(--transition);
+  text-decoration: none;
+}
+.contato__telefone svg { color: var(--yellow); }
+.contato__telefone:hover { color: var(--yellow); }
 
 .contato__endereco {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  margin-top: 24px;
+  margin-top: 16px;
   color: rgba(255,255,255,.75);
   font-size: .9rem;
   line-height: 1.6;
@@ -805,6 +899,23 @@ a  { text-decoration: none; color: inherit; }
   overflow: hidden;
   border: 1px solid rgba(255,255,255,.1);
   box-shadow: 0 8px 32px rgba(0,0,0,.3);
+  flex: 1;
+}
+
+/* Faz o mapa crescer para alinhar com o formulário */
+.contato__info {
+  display: flex;
+  flex-direction: column;
+}
+.contato__info .contato__mapa {
+  flex: 1;
+  min-height: 0;
+}
+.contato__info .contato__mapa iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
 }
 
 @media (max-width: 900px) {
@@ -947,7 +1058,7 @@ a  { text-decoration: none; color: inherit; }
 /* ── Desktop médio (≤1280px) ─────────────────────────────── */
 @media (max-width: 1280px) {
   .hero__content  { gap: 48px; }
-  .tech-orbit     { width: 340px; height: 340px; }
+  .tech-orbit     { width: 580px; height: 580px; }
   .contato__grid  { gap: 56px; }
 }
 
@@ -958,7 +1069,7 @@ a  { text-decoration: none; color: inherit; }
   .nav__link      { padding: 8px 10px; font-size: .85rem; }
 
   .hero__content  { gap: 36px; padding: 60px 24px; }
-  .tech-orbit     { width: 300px; height: 300px; }
+  .tech-orbit     { width: 440px; height: 440px; }
 
   .solutions-grid    { grid-template-columns: repeat(2, 1fr); }
   .diferenciais-grid { grid-template-columns: repeat(2, 1fr); }
